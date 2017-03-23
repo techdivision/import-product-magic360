@@ -52,7 +52,7 @@ class RoboFile extends \Robo\Tasks
     );
 
     /**
-     * Run's the composer install command.
+     * Runs the composer install command.
      *
      * @return void
      */
@@ -66,7 +66,7 @@ class RoboFile extends \Robo\Tasks
     }
 
     /**
-     * Run's the composer update command.
+     * Runs the composer update command.
      *
      * @return void
      */
@@ -104,7 +104,7 @@ class RoboFile extends \Robo\Tasks
     }
 
     /**
-     * Run's the PHPMD.
+     * Runs the PHPMD.
      *
      * @return void
      */
@@ -123,7 +123,7 @@ class RoboFile extends \Robo\Tasks
     }
 
     /**
-     * Run's the PHPCPD.
+     * Runs the PHPCPD.
      *
      * @return void
      */
@@ -142,7 +142,7 @@ class RoboFile extends \Robo\Tasks
     }
 
     /**
-     * Run's the PHPCodeSniffer.
+     * Runs the PHPCodeSniffer.
      *
      * @return void
      */
@@ -152,7 +152,7 @@ class RoboFile extends \Robo\Tasks
         // run the code sniffer
         $this->_exec(
             sprintf(
-                '%s/bin/phpcs -n --extensions=php --standard=psr2 --report-full --report-checkstyle=%s/reports/phpcs.xml %s',
+                '%s/bin/phpcs -n --extensions=php --standard=phpcs.xml --report-full --report-checkstyle=%s/reports/phpcs.xml %s',
                 $this->properties['vendor.dir'],
                 $this->properties['target.dir'],
                 $this->properties['src.dir']
@@ -161,7 +161,7 @@ class RoboFile extends \Robo\Tasks
     }
 
     /**
-     * Run's the PHPUnit tests.
+     * Runs the PHPUnit tests.
      *
      * @return void
      */

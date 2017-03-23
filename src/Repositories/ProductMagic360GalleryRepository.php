@@ -63,13 +63,13 @@ class ProductMagic360GalleryRepository extends AbstractRepository
      * Load's the product media gallery with the passed attribute ID + value.
      *
      * @param integer $productId The attribute ID of the product media gallery to load
-     * @param integer $position The value of the product media gallery to load
+     * @param integer $position  The value of the product media gallery to load
      *
      * @return array The product media gallery
      */
     public function findOneByProductIdAndPosition($productId, $position)
     {
-        // load and return the prodcut media gallery with the passed attribute ID + value
+        // load and return the product media gallery with the passed attribute ID + value
         $this->statement->execute(array(
             MemberNames::PRODUCT_ID => $productId,
             MemberNames::POSITION => $position

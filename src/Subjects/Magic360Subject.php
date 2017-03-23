@@ -55,14 +55,14 @@ class Magic360Subject extends AbstractProductSubject
     /**
      * The mapping for the SKUs to the created entity IDs.
      *
-     * @var array
+     * @var array $skuEntityIdMapping
      */
     protected $skuEntityIdMapping = array();
 
     /**
      * The entity IDs which were initially within the data storage, before other observers influenced them
      *
-     * @var array
+     * @var array $preloadEntityIds
      */
     protected $preloadEntityIds = array();
 
@@ -157,9 +157,10 @@ class Magic360Subject extends AbstractProductSubject
     }
 
     /**
-     * Loads the mag360 gallery with the passed product ID.
+     * Loads the magic360 gallery with the passed product ID.
      *
      * @param integer $productId The product ID of the gallery
+     * @param integer $position  The position of the gallery entry
      *
      * @return array The bundle option
      */
@@ -169,9 +170,9 @@ class Magic360Subject extends AbstractProductSubject
     }
 
     /**
-     * Loads the mag360 gallery with the passed name, store + parent ID.
+     * Loads the magic360 gallery with the passed name, store + parent ID.
      *
-     * @param string  $productId The product ID of the mag360 column to be returned
+     * @param string $productId The product ID of the magic360 column to be returned
      *
      * @return array The bundle option
      */
@@ -181,9 +182,9 @@ class Magic360Subject extends AbstractProductSubject
     }
 
     /**
-     * Persists the passed mag360 gallery and returns the ID.
+     * Persists the passed magic360 gallery and returns the ID.
      *
-     * @param array $galleryEntity The mag360 gallery to persist
+     * @param array $galleryEntity The magic360 gallery to persist
      *
      * @return string The ID of the persisted entity
      */
@@ -193,9 +194,9 @@ class Magic360Subject extends AbstractProductSubject
     }
 
     /**
-     * Persists the passed mag360 gallery and returns the ID.
+     * Persists the passed magic360 gallery and returns the ID.
      *
-     * @param array $productBundleOption The mag360 gallery to persist
+     * @param array $columnsEntry The magic360 column to persist
      *
      * @return string The ID of the persisted entity
      */
@@ -205,26 +206,28 @@ class Magic360Subject extends AbstractProductSubject
     }
 
     /**
-     * Persists the passed mag360 gallery and returns the ID.
+     * Persists the passed magic360 gallery and returns the ID.
      *
-     * @param array $galleryEntity The mag360 gallery to persist
+     * @param array       $row  The magic360 gallery data to delete
+     * @param string|null $name The name of the prepared statement that has to be executed
      *
-     * @return string The ID of the persisted entity
+     * @return void
      */
     public function deleteMagic360Gallery($row, $name = null)
     {
-        return $this->getProductProcessor()->deleteMagic360Gallery($row, $name);
+        $this->getProductProcessor()->deleteMagic360Gallery($row, $name);
     }
 
     /**
-     * Persists the passed mag360 gallery and returns the ID.
+     * Persists the passed magic360 gallery and returns the ID.
      *
-     * @param array $productBundleOption The mag360 gallery to persist
+     * @param array       $row  The magic360 column data to delete
+     * @param string|null $name The name of the prepared statement that has to be executed
      *
-     * @return string The ID of the persisted entity
+     * @return void
      */
     public function deleteMagic360Columns($row, $name = null)
     {
-        return $this->getProductProcessor()->deleteMagic360Columns($row, $name);
+        $this->getProductProcessor()->deleteMagic360Columns($row, $name);
     }
 }
