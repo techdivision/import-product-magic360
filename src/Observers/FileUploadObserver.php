@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TechDivision\Import\Product\Magic360\Utils\ColumnKeys
+ * TechDivision\Import\Product\Magic360\Observers\FileUploadObserver
  *
  * NOTICE OF LICENSE
  *
@@ -19,12 +19,14 @@
  * @link      http://www.techdivision.com
  */
 
-namespace TechDivision\Import\Product\Magic360\Utils;
+namespace TechDivision\Import\Product\Magic360\Observers;
 
-use TechDivision\Import\Product\Utils\ColumnKeys as FallbackColumnKeys;
+use TechDivision\Import\Product\Media\Utils\ColumnKeys;
+use TechDivision\Import\Observers\AbstractFileUploadObserver;
 
 /**
- * Utility class containing the CSV column names.
+ * Observer that uploads the file specified in a CSV file's column 'image_path' to a
+ * configurable directoy.
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @author    Bernhard Wick <b.wick@techdivision.com>
@@ -33,55 +35,26 @@ use TechDivision\Import\Product\Utils\ColumnKeys as FallbackColumnKeys;
  * @link      https://github.com/techdivision/import-product-magic360
  * @link      http://www.techdivision.com
  */
-class ColumnKeys extends FallbackColumnKeys
+class FileUploadObserver extends AbstractFileUploadObserver
 {
 
     /**
-     * Name for the column 'is_360'.
+     * Return's the name of the source column with the image path.
      *
-     * @var string
+     * @return string The image path
      */
-    const IS_360 = 'is_360';
+    protected function getSourceColumn()
+    {
+        return ColumnKeys::IMAGE_PATH;
+    }
 
     /**
-     * Name for the column 'images_360'.
+     * Return's the target column with the path of the copied image.
      *
-     * @var string
+     * @return string The path to the copied image
      */
-    const IMAGES_360 = 'images_360';
-
-    /**
-     * Name for the column 'images_path'.
-     *
-     * @var string
-     */
-    const IMAGES_PATH = 'images_path';
-
-    /**
-     * Name for the column 'product_id'.
-     *
-     * @var integer
-     */
-    const PRODUCT_ID = 'product_id';
-
-    /**
-     * Name for the column 'id'.
-     *
-     * @var integer
-     */
-    const RECORD_ID = 'id';
-
-    /**
-     * Name for the column 'position'.
-     *
-     * @var string
-     */
-    const POSITION = 'position';
-
-    /**
-     * Name for the column 'file'.
-     *
-     * @var string
-     */
-    const FILE = 'file';
+    protected function getTargetColumn()
+    {
+        return ColumnKeys::IMAGE_PATH_NEW;
+    }
 }

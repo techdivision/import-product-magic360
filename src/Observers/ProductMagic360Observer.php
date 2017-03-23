@@ -13,9 +13,9 @@
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @author    Bernhard Wick <b.wick@techdivision.com>
- * @copyright 2016 TechDivision GmbH <info@techdivision.com>
+ * @copyright 2017 TechDivision GmbH <info@techdivision.com>
  * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
- * @link      https://github.com/techdivision/import-product-link
+ * @link      https://github.com/techdivision/import-product-magic360
  * @link      http://www.techdivision.com
  */
 
@@ -29,15 +29,13 @@ use TechDivision\Import\Product\Observers\AbstractProductImportObserver;
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @author    Bernhard Wick <b.wick@techdivision.com>
- * @copyright 2016 TechDivision GmbH <info@techdivision.com>
+ * @copyright 2017 TechDivision GmbH <info@techdivision.com>
  * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
- * @link      https://github.com/techdivision/import-product-link
+ * @link      https://github.com/techdivision/import-product-magic360
  * @link      http://www.techdivision.com
  */
 class ProductMagic360Observer extends AbstractProductImportObserver
 {
-
-    // ,is_360=J,images_360=372420/360/,
 
     /**
      * The artefact type.
@@ -56,25 +54,20 @@ class ProductMagic360Observer extends AbstractProductImportObserver
         // we will only look for the image path if the row is flagged as having 360 images
         $is360 = $this->hasValue(ColumnKeys::IS_360);
         if ($is360) {
-            $images360Path = $this->getValue(ColumnKeys::IMAGES_360);
-            $artefact = array(
-                ColumnKeys::IMAGES_360 => $images360Path,
-                ColumnKeys::SKU => $this->getValue(ColumnKeys::SKU)
-            );
-
-            // finally adding the artefacts
-            $this->addArtefacts(array($artefact));
+            $this->addArtefacts(array(array(
+                ColumnKeys::SKU => $this->getValue(ColumnKeys::SKU),
+                ColumnKeys::IMAGES_PATH => $this->getValue(ColumnKeys::IMAGES_360)
+            )));
         }
     }
 
     /**
-     * Add the passed product type artefacts to the product with the
+     * Add the passed artefacts to the product with the
      * last entity ID.
      *
      * @param array $artefacts The product type artefacts
      *
      * @return void
-     * @uses \TechDivision\Import\Product\Media\Subjects\MediaSubject::getLastEntityId()
      */
     protected function addArtefacts(array $artefacts)
     {
