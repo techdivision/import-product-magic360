@@ -32,7 +32,7 @@ use TechDivision\Import\Repositories\AbstractRepository;
  * @copyright 2017 TechDivision GmbH <info@techdivision.com>
  * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  * @link      https://github.com/techdivision/import-product-magic360
- * @link      http://www.techdivision.com 
+ * @link      http://www.techdivision.com
  */
 class ProductMagic360ColumnsRepository extends AbstractRepository
 {
