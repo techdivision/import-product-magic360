@@ -69,64 +69,34 @@ class ProductMagic360ProcessorFactory
         $utilityClassName = $configuration->getUtilityClassName();
 
         // initialize the repository that provides product media gallery query functionality
-        $productMagic360GalleryRepository = new ProductMagic360GalleryRepository();
-        $productMagic360GalleryRepository->setUtilityClassName($utilityClassName);
-        $productMagic360GalleryRepository->setConnection($connection);
-        $productMagic360GalleryRepository->init();
+        $productMagic360GalleryRepository = new ProductMagic360GalleryRepository($connection, $utilityClassName);
 
         // initialize the repository that provides product media gallery value to entity query functionality
-        $productMagic360ColumnsRepository = new ProductMagic360ColumnsRepository();
-        $productMagic360ColumnsRepository->setUtilityClassName($utilityClassName);
-        $productMagic360ColumnsRepository->setConnection($connection);
-        $productMagic360ColumnsRepository->init();
+        $productMagic360ColumnsRepository = new ProductMagic360ColumnsRepository($connection, $utilityClassName);
 
         // initialize the action that provides product media gallery CRUD functionality
-        $productMagic360GalleryCreateProcessor = new Magic360GalleryCreateProcessor();
-        $productMagic360GalleryCreateProcessor->setUtilityClassName($utilityClassName);
-        $productMagic360GalleryCreateProcessor->setConnection($connection);
-        $productMagic360GalleryCreateProcessor->init();
-        $productMagic360GalleryUpdateProcessor = new Magic360GalleryUpdateProcessor();
-        $productMagic360GalleryUpdateProcessor->setUtilityClassName($utilityClassName);
-        $productMagic360GalleryUpdateProcessor->setConnection($connection);
-        $productMagic360GalleryUpdateProcessor->init();
-        $productMagic360GalleryDeleteProcessor = new Magic360GalleryDeleteProcessor();
-        $productMagic360GalleryDeleteProcessor->setUtilityClassName($utilityClassName);
-        $productMagic360GalleryDeleteProcessor->setConnection($connection);
-        $productMagic360GalleryDeleteProcessor->init();
-        $magic360GalleryAction = new Magic360GalleryAction();
-        $magic360GalleryAction->setCreateProcessor($productMagic360GalleryCreateProcessor);
-        $magic360GalleryAction->setUpdateProcessor($productMagic360GalleryUpdateProcessor);
-        $magic360GalleryAction->setDeleteProcessor($productMagic360GalleryDeleteProcessor);
+        $magic360GalleryAction = new Magic360GalleryAction(
+            new Magic360GalleryCreateProcessor($connection, $utilityClassName),
+            new Magic360GalleryUpdateProcessor($connection, $utilityClassName),
+            new Magic360GalleryDeleteProcessor($connection, $utilityClassName)
+        );
 
         // initialize the action that provides product media gallery value CRUD functionality
-        $productMagic360ColumnsCreateProcessor = new Magic360ColumnsCreateProcessor();
-        $productMagic360ColumnsCreateProcessor->setUtilityClassName($utilityClassName);
-        $productMagic360ColumnsCreateProcessor->setConnection($connection);
-        $productMagic360ColumnsCreateProcessor->init();
-        $productMagic360ColumnsUpdateProcessor = new Magic360ColumnsUpdateProcessor();
-        $productMagic360ColumnsUpdateProcessor->setUtilityClassName($utilityClassName);
-        $productMagic360ColumnsUpdateProcessor->setConnection($connection);
-        $productMagic360ColumnsUpdateProcessor->init();
-        $productMagic360ColumnsDeleteProcessor = new Magic360ColumnsDeleteProcessor()   ;
-        $productMagic360ColumnsDeleteProcessor->setUtilityClassName($utilityClassName);
-        $productMagic360ColumnsDeleteProcessor->setConnection($connection);
-        $productMagic360ColumnsDeleteProcessor->init();
-        $magic360ColumnsAction = new Magic360ColumnsAction();
-        $magic360ColumnsAction->setCreateProcessor($productMagic360ColumnsCreateProcessor);
-        $magic360ColumnsAction->setUpdateProcessor($productMagic360ColumnsUpdateProcessor);
-        $magic360ColumnsAction->setDeleteProcessor($productMagic360ColumnsDeleteProcessor);
+        $magic360ColumnsAction = new Magic360ColumnsAction(
+            new Magic360ColumnsCreateProcessor($connection, $utilityClassName),
+            new Magic360ColumnsUpdateProcessor($connection, $utilityClassName),
+            new Magic360ColumnsDeleteProcessor($connection, $utilityClassName)
+        );
 
-        // initialize the product media processor
+        // initialize and return the product magic 360 processor
         $processorType = static::getProcessorType();
         /** @var \TechDivision\Import\Product\Magic360\Services\ProductMagic360Processor $productMagic360Processor */
-        $productMagic360Processor = new $processorType();
-        $productMagic360Processor->setConnection($connection);
-        $productMagic360Processor->setProductMagic360GalleryRepository($productMagic360GalleryRepository);
-        $productMagic360Processor->setProductMagic360ColumnsRepository($productMagic360ColumnsRepository);
-        $productMagic360Processor->setMagic360GalleryAction($magic360GalleryAction);
-        $productMagic360Processor->setMagic360ColumnsAction($magic360ColumnsAction);
-
-        // return the instance
-        return $productMagic360Processor;
+        return new $processorType(
+            $connection,
+            $productMagic360GalleryRepository,
+            $productMagic360ColumnsRepository,
+            $magic360GalleryAction,
+            $magic360ColumnsAction
+        );
     }
 }

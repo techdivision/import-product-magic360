@@ -21,8 +21,13 @@
 
 namespace TechDivision\Import\Product\Magic360\Services;
 
+use TechDivision\Import\Product\Magic360\Actions\Magic360GalleryAction;
+use TechDivision\Import\Product\Magic360\Actions\Magic360ColumnsAction;
+use TechDivision\Import\Product\Magic360\Repositories\ProductMagic360GalleryRepository;
+use TechDivision\Import\Product\Magic360\Repositories\ProductMagic360ColumnsRepository;
+
 /**
- * A SLSB providing methods to load product data using a PDO connection.
+ * A processor implementation that provides methods to load product data using a PDO connection.
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @author    Bernhard Wick <b.wick@techdivision.com>
@@ -68,6 +73,29 @@ class ProductMagic360Processor implements ProductMagic360ProcessorInterface
      * @var \TechDivision\Import\Product\Magic360\Actions\Magic360ColumnsAction
      */
     protected $magic360ColumnsAction;
+
+    /**
+     * Initialize the processor with the necessary assembler and repository instances.
+     *
+     * @param \PDO                                                                                $connection                       The PDO connection to use
+     * @param \TechDivision\Import\Product\Magic360\Repositories\ProductMagic360GalleryRepository $productMagic360GalleryRepository The product magic 360 gallery repository to use
+     * @param \TechDivision\Import\Product\Magic360\Repositories\ProductMagic360ColumnsRepository $productMagic360ColumnsRepository The product magic 360 columns repository to use
+     * @param \TechDivision\Import\Product\Magic360\Actions\Magic360GalleryAction                 $magic360GalleryAction            The product magic 360 gallery action to use
+     * @param \TechDivision\Import\Product\Magic360\Actions\Magic360ColumnsAction                 $magic360ColumnsAction            The product magic 360 columns action to use
+     */
+    public function __construct(
+        \PDO $connection,
+        ProductMagic360GalleryRepository $productMagic360GalleryRepository,
+        ProductMagic360ColumnsRepository $productMagic360ColumnsRepository,
+        Magic360GalleryAction $magic360GalleryAction,
+        Magic360ColumnsAction $magic360ColumnsAction
+    ) {
+        $this->setConnection($connection);
+        $this->setProductMagic360GalleryRepository($productMagic360GalleryRepository);
+        $this->setProductMagic360ColumnsRepository($productMagic360ColumnsRepository);
+        $this->setMagic360GalleryAction($magic360GalleryAction);
+        $this->setMagic360ColumnsAction($magic360ColumnsAction);
+    }
 
     /**
      * Sets the passed connection.
