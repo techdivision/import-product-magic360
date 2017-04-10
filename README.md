@@ -14,7 +14,7 @@ This module provides the functionality to import the images for the almost famou
 ## Configuration
 
 In case that the [M2IF - Simple Console Tool](https://github.com/techdivision/import-cli-simple) 
-is used, the funcationality can be enabled by adding the following snippets to the configuration 
+is used, the functionality can be enabled merging the following snippet to the used configuration 
 file
 
 ```json
@@ -134,11 +134,11 @@ file
 
 # Missing Index
 
-For a massive improvement of the import perfomance, two indices has to be added.
+For a massive improvement of the import performance, two indices have to be added.
 
-To do that, open a MySQL command line and enter the following SQL statement
+To do that, open a MySQL command line and enter the following SQL statements.
 
 ```sql
-mysql$ ALTER TABLE `magic360_gallery` ADD INDEX `MAGIC360_GALLERY_PRODUCT_ID` (`product_id`);
-mysql$ ALTER TABLE `magic360_gallery` ADD INDEX `MAGIC360_GALLERY_POSITION` (`position`);
+ALTER TABLE `magic360_gallery` ADD INDEX `MAGIC360_GALLERY_PRODUCT_ID` (`product_id`);
+ALTER TABLE `magic360_gallery` ADD INDEX `MAGIC360_GALLERY_POSITION` (`position`);
 ```
