@@ -69,14 +69,16 @@ class Magic360Subject extends AbstractProductSubject
     /**
      * Initializes the subject data
      *
+     * @param string $serial The serial of the actual import
+     *
      * @return void
      * @see \Importer\Csv\Actions\ProductImportAction::prepare()
      */
-    public function setUp()
+    public function setUp($serial)
     {
 
         // invoke the parent method
-        parent::setUp();
+        parent::setUp($serial);
 
         // load the entity manager and the registry processor
         $registryProcessor = $this->getRegistryProcessor();
