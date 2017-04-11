@@ -41,7 +41,7 @@ class Magic360GalleryObserver extends AbstractProductImportObserver
     /**
      * Process the observer's business logic.
      *
-     * @return array The processed row
+     * @return void
      *
      * @throws \Exception Possible error in non-debug mode
      */
@@ -53,10 +53,10 @@ class Magic360GalleryObserver extends AbstractProductImportObserver
         // load parent/child IDs and link type ID
         $productId = $this->getSubject()->mapSkuToEntityId($sku);
 
-        $images360Path = $this->getValue(ColumnKeys::IMAGES_PATH);
+        $images360Path = DIRECTORY_SEPARATOR . ltrim($this->getValue(ColumnKeys::IMAGES_PATH), DIRECTORY_SEPARATOR);
         $mediaFilePath = $this->getSubject()->getMediaDir();
         // iterate the images (if any) and initialize an entity for each one
-        $images = $this->getSubject()->getFilesystem()->listContents($mediaFilePath . DIRECTORY_SEPARATOR . $images360Path);
+        $images = $this->getSubject()->getFilesystem()->listContents($mediaFilePath . $images360Path);
         if (count($images) > 0) {
             $entity = null;
             $entityId = null;
