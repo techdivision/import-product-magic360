@@ -84,7 +84,7 @@ class Magic360Subject extends AbstractProductSubject
         $registryProcessor = $this->getRegistryProcessor();
 
         // load the status of the actual import process
-        $status = $registryProcessor->getAttribute($this->serial);
+        $status = $registryProcessor->getAttribute($serial);
 
         // load the attribute set we've prepared initially
         $this->skuEntityIdMapping = $status[RegistryKeys::SKU_ENTITY_ID_MAPPING];
