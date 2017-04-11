@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="import_product_magic360.utility.class.name">TechDivision\Import\Product\Magic360\Utils\SqlStatements</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="import_product_magic360.repository.product.magic360.columns" class="TechDivision\Import\Product\Magic360\Repositories\ProductMagic360ColumnsRepository">
+            <argument type="service" id="connection"/>
+            <argument>%import_product_magic360.utility.class.name%</argument>
+        </service>
+        <service id="import_product_magic360.repository.product.magic360.gallery" class="TechDivision\Import\Product\Magic360\Repositories\ProductMagic360GalleryRepository">
+            <argument type="service" id="connection"/>
+            <argument>%import_product_magic360.utility.class.name%</argument>
+        </service>
+
+        <service id="import_product_magic360.action.processor.magic360.columns.create" class="TechDivision\Import\Product\Magic360\Actions\Processors\Magic360ColumnsCreateProcessor">
+            <argument type="service" id="connection"/>
+            <argument>%import_product_magic360.utility.class.name%</argument>
+        </service>
+        <service id="import_product_magic360.action.processor.magic360.columns.update" class="TechDivision\Import\Product\Magic360\Actions\Processors\Magic360ColumnsUpdateProcessor">
+            <argument type="service" id="connection"/>
+            <argument>%import_product_magic360.utility.class.name%</argument>
+        </service>
+        <service id="import_product_magic360.action.processor.magic360.columns.delete" class="TechDivision\Import\Product\Magic360\Actions\Processors\Magic360ColumnsDeleteProcessor">
+            <argument type="service" id="connection"/>
+            <argument>%import_product_magic360.utility.class.name%</argument>
+        </service>
+        <service id="import_product_magic360.action.processor.magic360.gallery.create" class="TechDivision\Import\Product\Magic360\Actions\Processors\Magic360GalleryCreateProcessor">
+            <argument type="service" id="connection"/>
+            <argument>%import_product_magic360.utility.class.name%</argument>
+        </service>
+        <service id="import_product_magic360.action.processor.magic360.gallery.update" class="TechDivision\Import\Product\Magic360\Actions\Processors\Magic360GalleryUpdateProcessor">
+            <argument type="service" id="connection"/>
+            <argument>%import_product_magic360.utility.class.name%</argument>
+        </service>
+        <service id="import_product_magic360.action.processor.magic360.gallery.delete" class="TechDivision\Import\Product\Magic360\Actions\Processors\Magic360GalleryDeleteProcessor">
+            <argument type="service" id="connection"/>
+            <argument>%import_product_magic360.utility.class.name%</argument>
+        </service>
+
+        <service id="import_product_magic360.action.magic360.columns" class="TechDivision\Import\Product\Magic360\Actions\Magic360ColumnsAction">
+            <argument type="service" id="import_product_magic360.action.processor.magic360.columns.create"/>
+            <argument type="service" id="import_product_magic360.action.processor.magic360.columns.update"/>
+            <argument type="service" id="import_product_magic360.action.processor.magic360.columns.delete"/>
+        </service>
+        <service id="import_product_magic360.action.magic360.gallery" class="TechDivision\Import\Product\Magic360\Actions\Magic360GalleryAction">
+            <argument type="service" id="import_product_magic360.action.processor.magic360.gallery.create"/>
+            <argument type="service" id="import_product_magic360.action.processor.magic360.gallery.update"/>
+            <argument type="service" id="import_product_magic360.action.processor.magic360.gallery.delete"/>
+        </service>
+
+        <service id="import_product_magic360.processor.product.magic360" class="TechDivision\Import\Product\Magic360\Services\ProductMagic360Processor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_product_magic360.repository.product.magic360.gallery"/>
+            <argument type="service" id="import_product_magic360.repository.product.magic360.columns"/>
+            <argument type="service" id="import_product_magic360.action.magic360.gallery"/>
+            <argument type="service" id="import_product_magic360.action.magic360.columns"/>
+        </service>
+
+        <service id="import_product_magic360.subject.magic360" class="TechDivision\Import\Product\Magic360\Subjects\Magic360Subject">
+            <argument type="service" id="configuration.import_product_magic360.subject.magic360"/>
+            <argument type="service" id="import.processor.registry"/>
+            <argument type="service" id="import.generator.core.config.data.uid"/>
+            <argument type="service" id="loggers"/>
+            <argument type="service" id="import_product_magic360.processor.product.magic360"/>
+        </service>
+
+        <service id="import_product_magic360.observer.clear.magic360" class="TechDivision\Import\Product\Magic360\Observers\ClearMagic360Observer"/>
+        <service id="import_product_magic360.observer.file.upload" class="TechDivision\Import\Product\Magic360\Observers\FileUploadObserver"/>
+        <service id="import_product_magic360.observer.magic360.columns" class="TechDivision\Import\Product\Magic360\Observers\Magic360ColumnsObserver"/>
+        <service id="import_product_magic360.observer.magic360.columns.update" class="TechDivision\Import\Product\Magic360\Observers\Magic360ColumnsUpdateObserver"/>
+        <service id="import_product_magic360.observer.magic360.gallery" class="TechDivision\Import\Product\Magic360\Observers\Magic360GalleryObserver"/>
+        <service id="import_product_magic360.observer.magic360.gallery.update" class="TechDivision\Import\Product\Magic360\Observers\Magic360GalleryUpdateObserver"/>
+        <service id="import_product_magic360.observer.product.magic360" class="TechDivision\Import\Product\Magic360\Observers\ProductMagic360Observer"/>
+
+    </services>
+
+</container>
