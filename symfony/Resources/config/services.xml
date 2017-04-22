@@ -62,14 +62,6 @@
             <argument type="service" id="import_product_magic360.action.magic360.columns"/>
         </service>
 
-        <service id="import_product_magic360.subject.magic360" class="TechDivision\Import\Product\Magic360\Subjects\Magic360Subject">
-            <argument type="service" id="configuration.import_product_magic360.subject.magic360"/>
-            <argument type="service" id="import.processor.registry"/>
-            <argument type="service" id="import.generator.core.config.data.uid"/>
-            <argument type="service" id="loggers"/>
-            <argument type="service" id="import_product_magic360.processor.product.magic360"/>
-        </service>
-
         <service id="import_product_magic360.observer.clear.magic360" class="TechDivision\Import\Product\Magic360\Observers\ClearMagic360Observer"/>
         <service id="import_product_magic360.observer.file.upload" class="TechDivision\Import\Product\Magic360\Observers\FileUploadObserver"/>
         <service id="import_product_magic360.observer.magic360.columns" class="TechDivision\Import\Product\Magic360\Observers\Magic360ColumnsObserver"/>
@@ -77,6 +69,16 @@
         <service id="import_product_magic360.observer.magic360.gallery" class="TechDivision\Import\Product\Magic360\Observers\Magic360GalleryObserver"/>
         <service id="import_product_magic360.observer.magic360.gallery.update" class="TechDivision\Import\Product\Magic360\Observers\Magic360GalleryUpdateObserver"/>
         <service id="import_product_magic360.observer.product.magic360" class="TechDivision\Import\Product\Magic360\Observers\ProductMagic360Observer"/>
+
+        <service id="configuration.import_product_magic360.subject.magic360" synthetic="true" />
+
+        <service id="import_product_magic360.subject.magic360" class="TechDivision\Import\Product\Magic360\Subjects\Magic360Subject">
+            <argument type="service" id="configuration.import_product_magic360.subject.magic360"/>
+            <argument type="service" id="import.processor.registry"/>
+            <argument type="service" id="import.generator.core.config.data.uid"/>
+            <argument type="service" id="loggers"/>
+            <argument type="service" id="import_product_magic360.processor.product.magic360"/>
+        </service>
 
     </services>
 

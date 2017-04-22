@@ -35,12 +35,6 @@ file
           ...,
           "observers": [
             {
-              "pre-import": [
-                ...,
-                "TechDivision\\Import\\Product\\Magic360\\Observers\\ClearMagic360Observer",
-              ]
-            },
-            {
               "import": [
                 ...,
                 "TechDivision\\Import\\Product\\Magic360\\Observers\\ProductMagic360Observer"

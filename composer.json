@@ -31,7 +31,8 @@
     "psr-4": {
       "TechDivision\\Import\\Product\\Magic360\\": [
         "src/",
-        "tests/"
+        "tests/",
+        "symfony/"
       ]
     }
   }
