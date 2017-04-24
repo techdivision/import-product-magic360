@@ -1,3 +1,13 @@
+# Version 1.0.0-beta1
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Integrate Symfony DI functionality
+
 # Version 0.4.1
 
 ## Bugfixes
