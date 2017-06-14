@@ -21,6 +21,7 @@
 
 namespace TechDivision\Import\Product\Magic360\Services;
 
+use TechDivision\Import\Connection\ConnectionInterface;
 use TechDivision\Import\Product\Magic360\Actions\Magic360GalleryAction;
 use TechDivision\Import\Product\Magic360\Actions\Magic360ColumnsAction;
 use TechDivision\Import\Product\Magic360\Repositories\ProductMagic360GalleryRepository;
@@ -42,7 +43,7 @@ class ProductMagic360Processor implements ProductMagic360ProcessorInterface
     /**
      * A PDO connection initialized with the values from the Doctrine EntityManager.
      *
-     * @var \PDO
+     * @var \TechDivision\Import\Connection\ConnectionInterface
      */
     protected $connection;
 
@@ -77,14 +78,14 @@ class ProductMagic360Processor implements ProductMagic360ProcessorInterface
     /**
      * Initialize the processor with the necessary assembler and repository instances.
      *
-     * @param \PDO                                                                                $connection                       The PDO connection to use
+     * @param \TechDivision\Import\Connection\ConnectionInterface                                 $connection                       The connection to use
      * @param \TechDivision\Import\Product\Magic360\Repositories\ProductMagic360GalleryRepository $productMagic360GalleryRepository The product magic 360 gallery repository to use
      * @param \TechDivision\Import\Product\Magic360\Repositories\ProductMagic360ColumnsRepository $productMagic360ColumnsRepository The product magic 360 columns repository to use
      * @param \TechDivision\Import\Product\Magic360\Actions\Magic360GalleryAction                 $magic360GalleryAction            The product magic 360 gallery action to use
      * @param \TechDivision\Import\Product\Magic360\Actions\Magic360ColumnsAction                 $magic360ColumnsAction            The product magic 360 columns action to use
      */
     public function __construct(
-        \PDO $connection,
+        ConnectionInterface $connection,
         ProductMagic360GalleryRepository $productMagic360GalleryRepository,
         ProductMagic360ColumnsRepository $productMagic360ColumnsRepository,
         Magic360GalleryAction $magic360GalleryAction,
@@ -98,21 +99,21 @@ class ProductMagic360Processor implements ProductMagic360ProcessorInterface
     }
 
     /**
-     * Sets the passed connection.
+     * Set's the passed connection.
      *
-     * @param \PDO $connection The connection to set
+     * @param \TechDivision\Import\Connection\ConnectionInterface $connection The connection to set
      *
      * @return void
      */
-    public function setConnection(\PDO $connection)
+    public function setConnection(ConnectionInterface $connection)
     {
         $this->connection = $connection;
     }
 
     /**
-     * Returns the connection.
+     * Return's the connection.
      *
-     * @return \PDO The connection instance
+     * @return \TechDivision\Import\Connection\ConnectionInterface The connection instance
      */
     public function getConnection()
     {

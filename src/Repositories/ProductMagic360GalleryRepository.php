@@ -56,7 +56,8 @@ class ProductMagic360GalleryRepository extends AbstractRepository
         $utilityClassName = $this->getUtilityClassName();
 
         // initialize the prepared statements
-        $this->statement = $this->getConnection()->prepare($utilityClassName::MAGIC360_GALLERY);
+        $this->statement =
+            $this->getConnection()->prepare($this->getUtilityClass()->find($utilityClassName::MAGIC360_GALLERY));
     }
 
     /**
