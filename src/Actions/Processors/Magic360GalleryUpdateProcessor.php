@@ -51,7 +51,7 @@ class Magic360GalleryUpdateProcessor extends AbstractCreateProcessor
 
         // return the array with the SQL statements that has to be prepared
         return array(
-            $utilityClassName::UPDATE_MAGIC360_GALLERY => $utilityClassName::UPDATE_MAGIC360_GALLERY
+            $utilityClassName::UPDATE_MAGIC360_GALLERY => $this->getUtilityClass()->find($utilityClassName::UPDATE_MAGIC360_GALLERY)
         );
     }
 

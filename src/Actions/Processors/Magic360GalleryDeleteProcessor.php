@@ -50,7 +50,7 @@ class Magic360GalleryDeleteProcessor extends AbstractDeleteProcessor
 
         // return the array with the SQL statements that has to be prepared
         return array(
-            $utilityClassName::DELETE_MAGIC360_GALLERY => $utilityClassName::DELETE_MAGIC360_GALLERY
+            $utilityClassName::DELETE_MAGIC360_GALLERY => $this->getUtilityClass()->find($utilityClassName::DELETE_MAGIC360_GALLERY)
         );
     }
 }

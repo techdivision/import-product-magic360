@@ -3,44 +3,42 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <parameters>
-        <parameter key="import_product_magic360.utility.class.name">TechDivision\Import\Product\Magic360\Utils\SqlStatements</parameter>
-    </parameters>
-
     <services>
+
+        <service id="import_product_magic360.utility.class.name" class="TechDivision\Import\Product\Magic360\Utils\SqlStatements"/>
 
         <service id="import_product_magic360.repository.product.magic360.columns" class="TechDivision\Import\Product\Magic360\Repositories\ProductMagic360ColumnsRepository">
             <argument type="service" id="connection"/>
-            <argument>%import_product_magic360.utility.class.name%</argument>
+            <argument type="service" id="import_product_magic360.utility.class.name"/>
         </service>
         <service id="import_product_magic360.repository.product.magic360.gallery" class="TechDivision\Import\Product\Magic360\Repositories\ProductMagic360GalleryRepository">
             <argument type="service" id="connection"/>
-            <argument>%import_product_magic360.utility.class.name%</argument>
+            <argument type="service" id="import_product_magic360.utility.class.name"/>
         </service>
 
         <service id="import_product_magic360.action.processor.magic360.columns.create" class="TechDivision\Import\Product\Magic360\Actions\Processors\Magic360ColumnsCreateProcessor">
             <argument type="service" id="connection"/>
-            <argument>%import_product_magic360.utility.class.name%</argument>
+            <argument type="service" id="import_product_magic360.utility.class.name"/>
         </service>
         <service id="import_product_magic360.action.processor.magic360.columns.update" class="TechDivision\Import\Product\Magic360\Actions\Processors\Magic360ColumnsUpdateProcessor">
             <argument type="service" id="connection"/>
-            <argument>%import_product_magic360.utility.class.name%</argument>
+            <argument type="service" id="import_product_magic360.utility.class.name"/>
         </service>
         <service id="import_product_magic360.action.processor.magic360.columns.delete" class="TechDivision\Import\Product\Magic360\Actions\Processors\Magic360ColumnsDeleteProcessor">
             <argument type="service" id="connection"/>
-            <argument>%import_product_magic360.utility.class.name%</argument>
+            <argument type="service" id="import_product_magic360.utility.class.name"/>
         </service>
         <service id="import_product_magic360.action.processor.magic360.gallery.create" class="TechDivision\Import\Product\Magic360\Actions\Processors\Magic360GalleryCreateProcessor">
             <argument type="service" id="connection"/>
-            <argument>%import_product_magic360.utility.class.name%</argument>
+            <argument type="service" id="import_product_magic360.utility.class.name"/>
         </service>
         <service id="import_product_magic360.action.processor.magic360.gallery.update" class="TechDivision\Import\Product\Magic360\Actions\Processors\Magic360GalleryUpdateProcessor">
             <argument type="service" id="connection"/>
-            <argument>%import_product_magic360.utility.class.name%</argument>
+            <argument type="service" id="import_product_magic360.utility.class.name"/>
         </service>
         <service id="import_product_magic360.action.processor.magic360.gallery.delete" class="TechDivision\Import\Product\Magic360\Actions\Processors\Magic360GalleryDeleteProcessor">
             <argument type="service" id="connection"/>
-            <argument>%import_product_magic360.utility.class.name%</argument>
+            <argument type="service" id="import_product_magic360.utility.class.name"/>
         </service>
 
         <service id="import_product_magic360.action.magic360.columns" class="TechDivision\Import\Product\Magic360\Actions\Magic360ColumnsAction">

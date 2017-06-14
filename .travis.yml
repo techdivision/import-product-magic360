@@ -3,7 +3,7 @@ language: php
 php:
   - 7.0
   - 5.6
-
+  
 before_install:
   - pecl install xdebug
   - phpenv rehash
@@ -14,10 +14,7 @@ before_script:
 
 script:
   - composer install
-  - vendor/bin/robo run:tests
-  - vendor/bin/robo run:cs
-  - vendor/bin/robo run:cpd
-  - vendor/bin/robo run:md
+  - vendor/bin/robo build
   - php ocular.phar code-coverage:upload --format=php-clover $TRAVIS_BUILD_DIR/target/reports/unit/clover.xml
 
 notifications:
