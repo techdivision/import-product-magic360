@@ -68,10 +68,7 @@
         <service id="import_product_magic360.observer.magic360.gallery.update" class="TechDivision\Import\Product\Magic360\Observers\Magic360GalleryUpdateObserver"/>
         <service id="import_product_magic360.observer.product.magic360" class="TechDivision\Import\Product\Magic360\Observers\ProductMagic360Observer"/>
 
-        <service id="configuration.import_product_magic360.subject.magic360" synthetic="true" />
-
         <service id="import_product_magic360.subject.magic360" class="TechDivision\Import\Product\Magic360\Subjects\Magic360Subject">
-            <argument type="service" id="configuration.import_product_magic360.subject.magic360"/>
             <argument type="service" id="import.processor.registry"/>
             <argument type="service" id="import.generator.core.config.data.uid"/>
             <argument type="service" id="loggers"/>
