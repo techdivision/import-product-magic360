@@ -23,6 +23,7 @@ namespace TechDivision\Import\Product\Magic360\Observers;
 
 use TechDivision\Import\Product\Magic360\Utils\ColumnKeys;
 use TechDivision\Import\Product\Magic360\Utils\SqlStatements;
+use TechDivision\Import\Product\Magic360\Services\ProductMagic360ProcessorInterface;
 use TechDivision\Import\Product\Observers\AbstractProductImportObserver;
 
 /**
@@ -37,6 +38,33 @@ use TechDivision\Import\Product\Observers\AbstractProductImportObserver;
  */
 class ClearMagic360Observer extends AbstractProductImportObserver
 {
+
+    /**
+     * The product magic360 processor instance.
+     *
+     * @var \TechDivision\Import\Product\Services\ProductBunchProcessorInterface
+     */
+    protected $productMagic360Processor;
+
+    /**
+     * Initialize the observer with the passed product magic360 processor instance.
+     *
+     * @param \TechDivision\Import\Product\Magic360\Services\ProductMagic360ProcessorInterface $productMagic360Processor The product magic360 processor instance
+     */
+    public function __construct(ProductMagic360ProcessorInterface $productMagic360Processor)
+    {
+        $this->productMagic360Processor = $productMagic360Processor;
+    }
+
+    /**
+     * Return's the product magic360 processor instance.
+     *
+     * @return \TechDivision\Import\Product\Magic360\Services\ProductMagic360ProcessorInterface The product magic360 processor instance
+     */
+    protected function getProductMagic360Processor()
+    {
+        return $this->productMagic360Processor;
+    }
 
     /**
      * Process the observer's business logic.
@@ -69,7 +97,7 @@ class ClearMagic360Observer extends AbstractProductImportObserver
      */
     public function deleteMagic360Gallery($row, $name = null)
     {
-        $this->getSubject()->deleteMagic360Gallery($row, $name);
+        $this->getProductMagic360Processor()->deleteMagic360Gallery($row, $name);
     }
 
     /**
@@ -82,6 +110,6 @@ class ClearMagic360Observer extends AbstractProductImportObserver
      */
     public function deleteMagic360Columns($row, $name = null)
     {
-        $this->getSubject()->deleteMagic360Columns($row, $name);
+        $this->getProductMagic360Processor()->deleteMagic360Columns($row, $name);
     }
 }
