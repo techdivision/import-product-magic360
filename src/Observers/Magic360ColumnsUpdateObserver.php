@@ -46,7 +46,7 @@ class Magic360ColumnsUpdateObserver extends Magic360ColumnsObserver
     protected function initializeMagic360Columns(array $attr)
     {
         // query whether the product media gallery value already exists or not
-        if ($entity = $this->getSubject()->loadMagic360Columns($attr[MemberNames::PRODUCT_ID])) {
+        if ($entity = $this->getProductMagic360Processor()->loadMagic360Columns($attr[MemberNames::PRODUCT_ID])) {
             return $this->mergeEntity($entity, $attr);
         }
 
