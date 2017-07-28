@@ -1,3 +1,13 @@
+# Version 1.0.0-beta5
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Ingore not mapped pre-loaded product IDs in debug mode, else throw an exception
+
 # Version 1.0.0-beta4
 
 ## Bugfixes
