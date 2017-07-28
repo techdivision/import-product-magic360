@@ -87,7 +87,6 @@ class Magic360GalleryObserver extends AbstractProductImportObserver
         $images = $this->getSubject()->getFilesystem()->listContents($mediaFilePath . $images360Path);
         if (count($images) > 0) {
             $entity = null;
-            $entityId = null;
             /**
              * @var integer $position
              * @var array $image

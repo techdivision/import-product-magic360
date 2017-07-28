@@ -79,12 +79,25 @@ class ClearMagic360Observer extends AbstractProductImportObserver
             return;
         }
 
-        // get the mapping to product ID based on the preload entity IDs
-        $productId = $this->getSubject()->mapSkuToPreloadEntityId($sku);
+        // load the subject
+        $subject = $this->getSubject();
 
-        // FIRST delete the data related with the product with the passed SKU
-        $this->deleteMagic360Gallery(array(ColumnKeys::PRODUCT_ID => $productId), SqlStatements::DELETE_MAGIC360_GALLERY);
-        $this->deleteMagic360Columns(array(ColumnKeys::PRODUCT_ID => $productId), SqlStatements::DELETE_MAGIC360_COLUMNS);
+        try {
+            // get the mapping to product ID based on the preload entity IDs
+            $productId = $subject->mapSkuToPreloadEntityId($sku);
+
+            // FIRST delete the data related with the product with the passed SKU
+            $this->deleteMagic360Gallery(array(ColumnKeys::PRODUCT_ID => $productId), SqlStatements::DELETE_MAGIC360_GALLERY);
+            $this->deleteMagic360Columns(array(ColumnKeys::PRODUCT_ID => $productId), SqlStatements::DELETE_MAGIC360_COLUMNS);
+
+        } catch (\Exception $e) {
+            // query whether or not debug mode has been enabled
+            if ($subject->isDebugMode()) {
+                $subject->getSystemLogger()->warning($subject->appendExceptionSuffix($e->getMessage()));
+            } else {
+                throw $e;
+            }
+        }
     }
 
     /**
