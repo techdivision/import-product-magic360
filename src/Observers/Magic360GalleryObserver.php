@@ -75,32 +75,46 @@ class Magic360GalleryObserver extends AbstractProductImportObserver
      */
     protected function process()
     {
+
         // extract the parent/child ID as well as the link type code from the row
         $sku = $this->getValue(ColumnKeys::SKU);
 
-        // load parent/child IDs and link type ID
+        // load parent product ID
         $productId = $this->getSubject()->mapSkuToEntityId($sku);
 
+        // initialize the directories with the images to import
+        $mediaDir = $this->getSubject()->getMediaDir();
         $images360Path = DIRECTORY_SEPARATOR . ltrim($this->getValue(ColumnKeys::IMAGES_PATH), DIRECTORY_SEPARATOR);
-        $mediaFilePath = $this->getSubject()->getMediaDir();
+
+        // log a message with the folder name containing the images
+        $this->getSubject()->getSystemLogger()->debug(sprintf('Now try to load 360° images from directory %s%s', $mediaDir, $images360Path));
+
         // iterate the images (if any) and initialize an entity for each one
-        $images = $this->getSubject()->getFilesystem()->listContents($mediaFilePath . $images360Path);
+        $images = $this->getSubject()->getFilesystemAdapter()->listContents($mediaDir . $images360Path);
+
+        // query whether or not images are available
         if (count($images) > 0) {
-            $entity = null;
-            /**
-             * @var integer $position
-             * @var array $image
-             */
+            // iterate over the found images
+            /** @var integer $position The image position */
+            /** @var string  $image    The image filename */
             foreach ($images as $position => $image) {
-                $entity = $this->initializeMagic360Gallery($this->initializeEntity(
-                    array(
-                        MemberNames::PRODUCT_ID => $productId,
-                        MemberNames::POSITION => $position + 1,
-                        MemberNames::FILE => $images360Path . $image['basename']
+                // initialize the entity
+                $entity = $this->initializeMagic360Gallery(
+                    $this->initializeEntity(
+                        array(
+                            MemberNames::PRODUCT_ID => $productId,
+                            MemberNames::POSITION   => $position + 1,
+                            MemberNames::FILE       => $images360Path . basename($image)
+                        )
                     )
-                ));
+                );
+
+                // persist the entity
                 $this->persistMagic360Gallery($entity);
             }
+
+            // log a debug message with the number of imported images
+            $this->getSubject()->getSystemLogger()->debug(sprintf('Successfully imported %d images for product %d', count($images), $productId));
         }
     }
 

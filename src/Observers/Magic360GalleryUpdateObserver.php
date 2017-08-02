@@ -45,12 +45,13 @@ class Magic360GalleryUpdateObserver extends Magic360GalleryObserver
      */
     protected function initializeMagic360Gallery(array $attr)
     {
+
+        // load product ID and position
+        $productId = $attr[MemberNames::PRODUCT_ID];
+        $position = $attr[MemberNames::POSITION];
+
         // query whether the product media gallery value already exists or not
-        if ($entity = $this->getProductMagic360Processor()->loadMagic360Gallery(
-            $attr[MemberNames::PRODUCT_ID],
-            $attr[MemberNames::POSITION]
-        )
-        ) {
+        if ($entity = $this->getProductMagic360Processor()->loadMagic360Gallery($productId, $position)) {
             return $this->mergeEntity($entity, $attr);
         }
 

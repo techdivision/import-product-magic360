@@ -21,12 +21,9 @@
 
 namespace TechDivision\Import\Product\Magic360\Subjects;
 
-use League\Flysystem\Adapter\Local;
-use League\Flysystem\Filesystem;
-use TechDivision\Import\Subjects\FileUploadTrait;
-use TechDivision\Import\Utils\ConfigurationKeys;
-use TechDivision\Import\Utils\FileUploadConfigurationKeys;
 use TechDivision\Import\Utils\RegistryKeys;
+use TechDivision\Import\Utils\FileUploadConfigurationKeys;
+use TechDivision\Import\Subjects\FileUploadTrait;
 use TechDivision\Import\Product\Utils\RegistryKeys as ProductRegistryKeys;
 use TechDivision\Import\Product\Subjects\AbstractProductSubject;
 
@@ -91,12 +88,6 @@ class Magic360Subject extends AbstractProductSubject
 
         // initialize the flag to decide copy images or not
         $this->setCopyImages($this->getConfiguration()->getParam(FileUploadConfigurationKeys::COPY_IMAGES));
-
-        // initialize the filesystems root directory
-        $this->setRootDir($this->getConfiguration()->getParam(ConfigurationKeys::ROOT_DIRECTORY, getcwd()));
-
-        // initialize the filesystem
-        $this->setFilesystem(new Filesystem(new Local($this->getRootDir())));
 
         // initialize media directory => can be absolute or relative
         if ($this->getConfiguration()->hasParam(FileUploadConfigurationKeys::MEDIA_DIRECTORY)) {
