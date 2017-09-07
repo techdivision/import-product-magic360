@@ -127,12 +127,12 @@ class Magic360ColumnsObserver extends AbstractProductImportObserver
     /**
      * Persists the column data and returns the ID.
      *
-     * @param array $productMediaGallery The product media gallery data to persist
+     * @param array $magic360Columns The product media gallery data to persist
      *
      * @return string The ID of the persisted entity
      */
-    protected function persistMagic360Columns($productMediaGallery)
+    protected function persistMagic360Columns($magic360Columns)
     {
-        return $this->getProductMagic360Processor()->persistMagic360Columns($productMediaGallery);
+        return $this->getProductMagic360Processor()->persistMagic360Columns($magic360Columns);
     }
 }

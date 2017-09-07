@@ -21,8 +21,9 @@
 
 namespace TechDivision\Import\Product\Magic360\Observers;
 
-use TechDivision\Import\Product\Media\Utils\ColumnKeys;
-use TechDivision\Import\Observers\AbstractFileUploadObserver;
+use TechDivision\Import\Subjects\SubjectInterface;
+use TechDivision\Import\Observers\AbstractObserver;
+use TechDivision\Import\Product\Magic360\Utils\ColumnKeys;
 
 /**
  * Observer that uploads the file specified in a CSV file's column 'image_path' to a
@@ -35,8 +36,76 @@ use TechDivision\Import\Observers\AbstractFileUploadObserver;
  * @link      https://github.com/techdivision/import-product-magic360
  * @link      http://www.techdivision.com
  */
-class FileUploadObserver extends AbstractFileUploadObserver
+class FileUploadObserver extends AbstractObserver
 {
+
+    /**
+     * Will be invoked by the action on the events the listener has been registered for.
+     *
+     * @param \TechDivision\Import\Subjects\SubjectInterface $subject The subject instance
+     *
+     * @return array The modified row
+     * @see \TechDivision\Import\Observers\ObserverInterface::handle()
+     */
+    public function handle(SubjectInterface $subject)
+    {
+
+        // initialize the row
+        $this->setSubject($subject);
+        $this->setRow($subject->getRow());
+
+        // process the functionality and return the row
+        $this->process();
+
+        // return the processed row
+        return $this->getRow();
+    }
+
+    /**
+     * Process the observer's business logic.
+     *
+     * @return array The processed row
+     */
+    protected function process()
+    {
+
+        // query whether or not, the image changed
+        if ($this->isParentImage($image = $this->getValue($this->getSourceColumn()))) {
+            return;
+        }
+
+        // initialize the image path
+        $imagePath = $this->getValue($this->getSourceColumn());
+
+        // load the subjet
+        $subject = $this->getSubject();
+
+        // query whether or not we've to upload the image files
+        if ($subject->hasCopyImages()) {
+            // upload the file and set the new image path
+            $imagePath = $subject->uploadFile($image);
+
+            // log a message that the image has been copied
+            $subject->getSystemLogger()->debug(
+                sprintf('Successfully copied image %s => %s', $image, $imagePath)
+            );
+        }
+
+        // write the real image path to the target column
+        $this->setValue($this->getTargetColumn(), $imagePath);
+    }
+
+    /**
+     * Return's TRUE if the passed image is the parent one.
+     *
+     * @param string $image The imageD to check
+     *
+     * @return boolean TRUE if the passed image is the parent one
+     */
+    protected function isParentImage($image)
+    {
+        return $this->getSubject()->getParentImage() === $image;
+    }
 
     /**
      * Return's the name of the source column with the image path.
