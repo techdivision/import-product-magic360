@@ -1,39 +1,42 @@
 {
-  "name": "techdivision/import-product-magic360",
-  "description": "M2IF library providing basic import functionality for the Magic ToolBox Magic 360 image gallery view",
-  "minimum-stability": "alpha",
-  "license": "OSL-3.0",
-  "require": {
-    "php": ">=5.6.0",
-    "techdivision/import-product": "~1.0"
-  },
-  "require-dev": {
-    "phpmd/phpmd": "2.5.*",
-    "phploc/phploc": "2.0.*",
-    "pdepend/pdepend": "2.0.*",
-    "phpunit/phpunit": "4.4.*",
-    "sebastian/phpcpd": "2.0.*",
-    "squizlabs/php_codesniffer": "2.2.*",
-    "phpdocumentor/phpdocumentor": "2.8.*",
-    "consolidation/robo": "~1.0"
-  },
-  "authors": [
-    {
-      "name": "Tim Wagner",
-      "email": "t.wagner@techdivision.com"
+    "name": "techdivision/import-product-magic360",
+    "description": "M2IF library providing basic import functionality for the Magic ToolBox Magic 360 image gallery view",
+    "minimum-stability": "alpha",
+    "license": "OSL-3.0",
+    "require": {
+        "php": ">=5.6.0",
+        "techdivision/import-product": "~1.0"
     },
-    {
-      "name": "Bernhard Wick",
-      "email": "b.wick@techdivision.com"
+    "require-dev": {
+        "phpmd/phpmd": "2.5.*",
+        "phploc/phploc": "2.0.*",
+        "doctrine/dbal": "~2.0",
+        "symfony/config": "~2.8|~3.0",
+        "symfony/http-kernel": "~2.8|~3.0",
+        "pdepend/pdepend": "2.0.*",
+        "phpunit/phpunit": "4.4.*",
+        "sebastian/phpcpd": "2.0.*",
+        "squizlabs/php_codesniffer": "2.2.*",
+        "phpdocumentor/phpdocumentor": "2.8.*",
+        "consolidation/robo": "~1.0"
+    },
+    "authors": [
+        {
+            "name": "Tim Wagner",
+            "email": "t.wagner@techdivision.com"
+        },
+        {
+            "name": "Bernhard Wick",
+            "email": "b.wick@techdivision.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "TechDivision\\Import\\Product\\Magic360\\": [
+                "src/",
+                "tests/",
+                "symfony/"
+            ]
+        }
     }
-  ],
-  "autoload": {
-    "psr-4": {
-      "TechDivision\\Import\\Product\\Magic360\\": [
-        "src/",
-        "tests/",
-        "symfony/"
-      ]
-    }
-  }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TechDivision\Import\Product\Magic360\Actions\Processors\ProductMediaGalleryCreateProcessor
+ * TechDivision\Import\Product\Magic360\Actions\Processors\Magic360GalleryCreateProcessor
  *
  * NOTICE OF LICENSE
  *

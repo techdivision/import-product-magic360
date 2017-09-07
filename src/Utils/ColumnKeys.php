@@ -21,8 +21,6 @@
 
 namespace TechDivision\Import\Product\Magic360\Utils;
 
-use TechDivision\Import\Product\Utils\ColumnKeys as FallbackColumnKeys;
-
 /**
  * Utility class containing the CSV column names.
  *
@@ -33,7 +31,7 @@ use TechDivision\Import\Product\Utils\ColumnKeys as FallbackColumnKeys;
  * @link      https://github.com/techdivision/import-product-magic360
  * @link      http://www.techdivision.com
  */
-class ColumnKeys extends FallbackColumnKeys
+class ColumnKeys extends \TechDivision\Import\Product\Utils\ColumnKeys
 {
 
     /**
@@ -84,4 +82,18 @@ class ColumnKeys extends FallbackColumnKeys
      * @var string
      */
     const FILE = 'file';
+
+    /**
+     * Name for the column 'image_path'.
+     *
+     * @var string
+     */
+    const IMAGE_PATH = 'image_path';
+
+    /**
+     * Name for the column 'image_path_new'.
+     *
+     * @var string
+     */
+    const IMAGE_PATH_NEW = 'image_path_new';
 }
