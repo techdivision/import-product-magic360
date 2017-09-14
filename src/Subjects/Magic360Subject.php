@@ -64,6 +64,13 @@ class Magic360Subject extends AbstractProductSubject
     protected $preloadEntityIds = array();
 
     /**
+     * The name of the craeted image.
+     *
+     * @var integer
+     */
+    protected $parentImage;
+
+    /**
      * Initializes the subject data
      *
      * @param string $serial The serial of the actual import
@@ -146,5 +153,27 @@ class Magic360Subject extends AbstractProductSubject
 
         // throw an exception if the SKU has not been mapped yet
         throw new \Exception(sprintf('Found not mapped SKU %s within preload entities', $sku));
+    }
+
+    /**
+     * Set's the name of the created image.
+     *
+     * @param string $parentImage The name of the created image
+     *
+     * @return void
+     */
+    public function setParentImage($parentImage)
+    {
+        $this->parentImage = $parentImage;
+    }
+
+    /**
+     * Return's the name of the created image.
+     *
+     * @return string The name of the created image
+     */
+    public function getParentImage()
+    {
+        return $this->parentImage;
     }
 }
