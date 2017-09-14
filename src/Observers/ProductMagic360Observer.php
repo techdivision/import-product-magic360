@@ -52,12 +52,15 @@ class ProductMagic360Observer extends AbstractProductImportObserver
     protected function process()
     {
         // we will only look for the image path if the row is flagged as having 360 images
-        $is360 = $this->hasValue(ColumnKeys::IS_360);
-        if ($is360) {
-            $this->addArtefacts(array(array(
-                ColumnKeys::SKU => $this->getValue(ColumnKeys::SKU),
-                ColumnKeys::IMAGES_PATH => $this->getValue(ColumnKeys::IMAGES_360)
-            )));
+        if ($this->hasValue(ColumnKeys::IS_360)) {
+            $this->addArtefacts(
+                array(
+                    array(
+                        ColumnKeys::SKU => $this->getValue(ColumnKeys::SKU),
+                        ColumnKeys::IMAGES_PATH => $this->getValue(ColumnKeys::IMAGES_360)
+                    )
+                )
+            );
         }
     }
 
