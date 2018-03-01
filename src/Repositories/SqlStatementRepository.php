@@ -91,9 +91,6 @@ class SqlStatementRepository extends AbstractSqlStatementRepository
     public function __construct()
     {
 
-        // call the parent constructor
-        parent::__construct();
-
         // merge the class statements
         foreach ($this->statements as $key => $statement) {
             $this->preparedStatements[$key] = $statement;
