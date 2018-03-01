@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TechDivision\Import\Product\Magic360\Repositories\SqlStatements
+ * TechDivision\Import\Product\Magic360\Repositories\SqlStatementRepository
  *
  * NOTICE OF LICENSE
  *
@@ -76,7 +76,7 @@ class SqlStatementRepository extends AbstractSqlStatementRepository
                      columns)
              VALUES (:product_id,
                      :columns)',
-        SqlStatements::UPDATE_MAGIC360_COLUMNS =>
+        SqlStatementKeys::UPDATE_MAGIC360_COLUMNS =>
             'SqlStatementKeys magic360_columns
                 SET product_id = :product_id,
                     columns = :columns

@@ -22,7 +22,7 @@
 namespace TechDivision\Import\Product\Magic360\Observers;
 
 use TechDivision\Import\Product\Magic360\Utils\ColumnKeys;
-use TechDivision\Import\Product\Magic360\Utils\SqlStatements;
+use TechDivision\Import\Product\Magic360\Utils\SqlStatementKeys;
 use TechDivision\Import\Product\Magic360\Services\ProductMagic360ProcessorInterface;
 use TechDivision\Import\Product\Observers\AbstractProductImportObserver;
 
@@ -87,8 +87,8 @@ class ClearMagic360Observer extends AbstractProductImportObserver
             $productId = $subject->mapSkuToPreloadEntityId($sku);
 
             // FIRST delete the data related with the product with the passed SKU
-            $this->deleteMagic360Gallery(array(ColumnKeys::PRODUCT_ID => $productId), SqlStatements::DELETE_MAGIC360_GALLERY);
-            $this->deleteMagic360Columns(array(ColumnKeys::PRODUCT_ID => $productId), SqlStatements::DELETE_MAGIC360_COLUMNS);
+            $this->deleteMagic360Gallery(array(ColumnKeys::PRODUCT_ID => $productId), SqlStatementKeys::DELETE_MAGIC360_GALLERY);
+            $this->deleteMagic360Columns(array(ColumnKeys::PRODUCT_ID => $productId), SqlStatementKeys::DELETE_MAGIC360_COLUMNS);
 
         } catch (\Exception $e) {
             // query whether or not debug mode has been enabled
