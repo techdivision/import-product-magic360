@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TechDivision\Import\Product\Magic360\Utils\SqlStatements
+ * TechDivision\Import\Product\Magic360\Utils\SqlStatementKeys
  *
  * NOTICE OF LICENSE
  *
@@ -21,10 +21,8 @@
 
 namespace TechDivision\Import\Product\Magic360\Utils;
 
-use TechDivision\Import\Utils\AbstractSqlStatements;
-
 /**
- * Collection of SQL statements used for data manipulation.
+ * Utility class with keys of the SQL statements to use.
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @author    Bernhard Wick <b.wick@techdivision.com>
@@ -33,7 +31,7 @@ use TechDivision\Import\Utils\AbstractSqlStatements;
  * @link      https://github.com/techdivision/import-product-magic360
  * @link      http://www.techdivision.com
  */
-class SqlStatements extends AbstractSqlStatements
+class SqlStatementKeys
 {
 
     /**
@@ -91,64 +89,4 @@ class SqlStatements extends AbstractSqlStatements
      * @var string DELETE_MAGIC360_COLUMNS
      */
     const DELETE_MAGIC360_COLUMNS = 'delete.magic360_columns';
-
-    /**
-     * The SQL statements.
-     *
-     * @var array
-     */
-    private $statements = array(
-        SqlStatements::MAGIC360_GALLERY =>
-            'SELECT *
-               FROM magic360_gallery
-              WHERE product_id = :product_id
-                AND position = :position',
-        SqlStatements::MAGIC360_COLUMNS =>
-            'SELECT *
-               FROM magic360_columns
-              WHERE product_id = :product_id',
-        SqlStatements::CREATE_MAGIC360_GALLERY =>
-            'INSERT
-               INTO magic360_gallery
-                    (product_id,
-                     position,
-                     file)
-             VALUES (:product_id,
-                     :position,
-                     :file)',
-        SqlStatements::UPDATE_MAGIC360_GALLERY =>
-            'UPDATE magic360_gallery
-                SET product_id = :product_id,
-                    position = :position,
-                    file = :file
-              WHERE id = :id',
-        SqlStatements::DELETE_MAGIC360_GALLERY =>
-            'DELETE FROM magic360_gallery WHERE product_id = :product_id',
-        SqlStatements::CREATE_MAGIC360_COLUMNS =>
-            'INSERT
-               INTO magic360_columns
-                    (product_id,
-                     columns)
-             VALUES (:product_id,
-                     :columns)',
-        SqlStatements::UPDATE_MAGIC360_COLUMNS =>
-            'UPDATE magic360_columns
-                SET product_id = :product_id,
-                    columns = :columns
-              WHERE product_id = :product_id',
-        SqlStatements::DELETE_MAGIC360_COLUMNS =>
-            'DELETE FROM magic360_columns WHERE product_id = :product_id',
-    );
-
-    /**
-     * Initialize the the SQL statements.
-     */
-    public function __construct()
-    {
-
-        // merge the class statements
-        foreach ($this->statements as $key => $statement) {
-            $this->preparedStatements[$key] = $statement;
-        }
-    }
 }
