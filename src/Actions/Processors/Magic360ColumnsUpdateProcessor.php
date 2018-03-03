@@ -22,6 +22,7 @@
 namespace TechDivision\Import\Product\Magic360\Actions\Processors;
 
 use TechDivision\Import\Product\Magic360\Utils\MemberNames;
+use TechDivision\Import\Product\Magic360\Utils\SqlStatementKeys;
 use TechDivision\Import\Actions\Processors\AbstractCreateProcessor;
 
 /**
@@ -45,13 +46,9 @@ class Magic360ColumnsUpdateProcessor extends AbstractCreateProcessor
      */
     protected function getStatements()
     {
-
-        // load the utility class name
-        $utilityClassName = $this->getUtilityClassName();
-
         // return the array with the SQL statements that has to be prepared
         return array(
-            $utilityClassName::UPDATE_MAGIC360_COLUMNS => $this->getUtilityClass()->find($utilityClassName::UPDATE_MAGIC360_COLUMNS)
+            SqlStatementKeys::UPDATE_MAGIC360_COLUMNS => $this->loadStatement(SqlStatementKeys::UPDATE_MAGIC360_COLUMNS)
         );
     }
 

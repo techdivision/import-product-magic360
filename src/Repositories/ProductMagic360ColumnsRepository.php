@@ -21,8 +21,9 @@
 
 namespace TechDivision\Import\Product\Magic360\Repositories;
 
-use TechDivision\Import\Product\Magic360\Utils\MemberNames;
 use TechDivision\Import\Repositories\AbstractRepository;
+use TechDivision\Import\Product\Magic360\Utils\ParamNames;
+use TechDivision\Import\Product\Magic360\Utils\SqlStatementKeys;
 
 /**
  * Repository implementation to load magic360 column data.
@@ -52,12 +53,9 @@ class ProductMagic360ColumnsRepository extends AbstractRepository
     public function init()
     {
 
-        // load the utility class name
-        $utilityClassName = $this->getUtilityClassName();
-
         // initialize the prepared statements
         $this->statement =
-            $this->getConnection()->prepare($this->getUtilityClass()->find($utilityClassName::MAGIC360_COLUMNS));
+            $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::MAGIC360_COLUMNS));
     }
 
     /**
@@ -69,9 +67,9 @@ class ProductMagic360ColumnsRepository extends AbstractRepository
      */
     public function findOneByProductId($productId)
     {
-        // load and return the prodcut media gallery value with the passed value/store/parent ID
-        $this->statement->execute(array(MemberNames::PRODUCT_ID => $productId));
 
+        // load and return the prodcut media gallery value with the passed value/store/parent ID
+        $this->statement->execute(array(ParamNames::PRODUCT_ID => $productId));
         return $this->statement->fetch(\PDO::FETCH_ASSOC);
     }
 }

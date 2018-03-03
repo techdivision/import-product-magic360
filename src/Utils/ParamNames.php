@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TechDivision\Import\Product\Magic360\Actions\Processors\Magic360ColumnsDeleteProcessor
+ * TechDivision\Import\Product\Magic360\Utils\ParamNames
  *
  * NOTICE OF LICENSE
  *
@@ -19,13 +19,10 @@
  * @link      http://www.techdivision.com
  */
 
-namespace TechDivision\Import\Product\Magic360\Actions\Processors;
-
-use TechDivision\Import\Product\Magic360\Utils\SqlStatementKeys;
-use TechDivision\Import\Actions\Processors\AbstractDeleteProcessor;
+namespace TechDivision\Import\Product\Magic360\Utils;
 
 /**
- * The magic360 columns delete processor implementation.
+ * Utility class containing parameter names for prepared statements.
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @author    Bernhard Wick <b.wick@techdivision.com>
@@ -34,21 +31,6 @@ use TechDivision\Import\Actions\Processors\AbstractDeleteProcessor;
  * @link      https://github.com/techdivision/import-product-magic360
  * @link      http://www.techdivision.com
  */
-class Magic360ColumnsDeleteProcessor extends AbstractDeleteProcessor
+class ParamNames extends MemberNames
 {
-
-    /**
-     * Returns the array with the SQL statements that has to be prepared.
-     *
-     * @return array The SQL statements to be prepared
-     * @see \TechDivision\Import\Actions\Processors\AbstractBaseProcessor::getStatements()
-     */
-    protected function getStatements()
-    {
-
-        // return the array with the SQL statements that has to be prepared
-        return array(
-            SqlStatementKeys::DELETE_MAGIC360_COLUMNS => $this->loadStatement(SqlStatementKeys::DELETE_MAGIC360_COLUMNS)
-        );
-    }
 }

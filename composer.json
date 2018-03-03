@@ -4,7 +4,6 @@
     "minimum-stability": "alpha",
     "license": "OSL-3.0",
     "require": {
-        "php": ">=5.6.0",
         "techdivision/import-product": "~1.0"
     },
     "require-dev": {

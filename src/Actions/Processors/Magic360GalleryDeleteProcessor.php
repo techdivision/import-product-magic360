@@ -21,6 +21,7 @@
 
 namespace TechDivision\Import\Product\Magic360\Actions\Processors;
 
+use TechDivision\Import\Product\Magic360\Utils\SqlStatementKeys;
 use TechDivision\Import\Actions\Processors\AbstractDeleteProcessor;
 
 /**
@@ -45,12 +46,9 @@ class Magic360GalleryDeleteProcessor extends AbstractDeleteProcessor
     protected function getStatements()
     {
 
-        // load the utility class name
-        $utilityClassName = $this->getUtilityClassName();
-
         // return the array with the SQL statements that has to be prepared
         return array(
-            $utilityClassName::DELETE_MAGIC360_GALLERY => $this->getUtilityClass()->find($utilityClassName::DELETE_MAGIC360_GALLERY)
+            SqlStatementKeys::DELETE_MAGIC360_GALLERY => $this->loadStatement(SqlStatementKeys::DELETE_MAGIC360_GALLERY)
         );
     }
 }
