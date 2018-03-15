@@ -77,7 +77,7 @@ class SqlStatementRepository extends AbstractSqlStatementRepository
              VALUES (:product_id,
                      :columns)',
         SqlStatementKeys::UPDATE_MAGIC360_COLUMNS =>
-            'SqlStatementKeys magic360_columns
+            'UPDATE magic360_columns
                 SET product_id = :product_id,
                     columns = :columns
               WHERE product_id = :product_id',

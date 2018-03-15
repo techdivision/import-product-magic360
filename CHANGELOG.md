@@ -1,3 +1,13 @@
+# Version 1.0.0-beta11
+
+## Bugfixes
+
+* Fixed invalid SQL statement to update magic360_columns table
+
+## Features
+
+* None
+
 # Version 1.0.0-beta10
 
 ## Bugfixes
