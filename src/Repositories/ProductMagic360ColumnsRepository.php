@@ -35,7 +35,7 @@ use TechDivision\Import\Product\Magic360\Utils\SqlStatementKeys;
  * @link      https://github.com/techdivision/import-product-magic360
  * @link      http://www.techdivision.com
  */
-class ProductMagic360ColumnsRepository extends AbstractRepository
+class ProductMagic360ColumnsRepository extends AbstractRepository implements ProductMagic360ColumnsRepositoryInterface
 {
 
     /**

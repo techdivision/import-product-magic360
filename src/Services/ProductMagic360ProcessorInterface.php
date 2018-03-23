@@ -24,7 +24,7 @@ namespace TechDivision\Import\Product\Magic360\Services;
 use TechDivision\Import\Product\Services\ProductProcessorInterface;
 
 /**
- * A SLSB providing methods to load product data using a PDO connection.
+ * Interface for product magic 360 processor implementations.
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @author    Bernhard Wick <b.wick@techdivision.com>
@@ -37,66 +37,30 @@ interface ProductMagic360ProcessorInterface extends ProductProcessorInterface
 {
 
     /**
-     * Sets the repository to load magic360 gallery data.
-     *
-     * @param \TechDivision\Import\Product\Magic360\Repositories\ProductMagic360GalleryRepository $productMagic360GalleryRepository The repository instance
-     *
-     * @return void
-     */
-    public function setProductMagic360GalleryRepository($productMagic360GalleryRepository);
-
-    /**
      * Returns the repository to load magic360 gallery data.
      *
-     * @return \TechDivision\Import\Product\Magic360\Repositories\ProductMagic360GalleryRepository The repository instance
+     * @return \TechDivision\Import\Product\Magic360\Repositories\ProductMagic360GalleryRepositoryInterface The repository instance
      */
     public function getProductMagic360GalleryRepository();
 
     /**
-     * Sets the repository to load magic360 column data.
-     *
-     * @param \TechDivision\Import\Product\Magic360\Repositories\ProductMagic360ColumnsRepository $productMagic360ColumnsRepository The repository instance
-     *
-     * @return void
-     */
-    public function setProductMagic360ColumnsRepository($productMagic360ColumnsRepository);
-
-    /**
      * Returns the repository to load magic360 column data.
      *
-     * @return \TechDivision\Import\Product\Magic360\Repositories\ProductMagic360ColumnsRepository The repository instance
+     * @return \TechDivision\Import\Product\Magic360\Repositories\ProductMagic360ColumnsRepositoryInterface The repository instance
      */
     public function getProductMagic360ColumnsRepository();
 
     /**
-     * Sets the action with the magic360 gallery CRUD methods.
-     *
-     * @param \TechDivision\Import\Product\Magic360\Actions\Magic360GalleryAction $magic360GalleryAction The action with the magic360 gallery CRUD methods
-     *
-     * @return void
-     */
-    public function setMagic360GalleryAction($magic360GalleryAction);
-
-    /**
      * Returns the action with the magic360 gallery CRUD methods.
      *
-     * @return \TechDivision\Import\Product\Magic360\Actions\Magic360GalleryAction $magic360GalleryAction The action with the magic360 gallery CRUD methods
+     * @return \TechDivision\Import\Product\Magic360\Actions\Magic360GalleryActionInterface $magic360GalleryAction The action with the magic360 gallery CRUD methods
      */
     public function getMagic360GalleryAction();
 
     /**
-     * Sets the action with the magic360 column CRUD methods.
-     *
-     * @param \TechDivision\Import\Product\Magic360\Actions\Magic360ColumnsAction $magic360ColumnsAction The action with the magic360 column CRUD methods
-     *
-     * @return void
-     */
-    public function setMagic360ColumnsAction($magic360ColumnsAction);
-
-    /**
      * Returns the action with the magic360 column CRUD methods.
      *
-     * @return \TechDivision\Import\Product\Magic360\Actions\Magic360ColumnsAction The action with the magic360 column CRUD methods
+     * @return \TechDivision\Import\Product\Magic360\Actions\Magic360ColumnsActionInterface The action with the magic360 column CRUD methods
      */
     public function getMagic360ColumnsAction();
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TechDivision\Import\Product\Magic360\Actions\Magic360ColumnsAction
+ * TechDivision\Import\Product\Magic360\Repositories\ProductMagic360ColumnsRepositoryInterface
  *
  * NOTICE OF LICENSE
  *
@@ -19,12 +19,12 @@
  * @link      http://www.techdivision.com
  */
 
-namespace TechDivision\Import\Product\Magic360\Actions;
+namespace TechDivision\Import\Product\Magic360\Repositories;
 
-use TechDivision\Import\Actions\AbstractAction;
+use TechDivision\Import\Repositories\RepositoryInterface;
 
 /**
- * The columns action class.
+ * Interface for repository implementations to load magic360 column data.
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @author    Bernhard Wick <b.wick@techdivision.com>
@@ -33,6 +33,15 @@ use TechDivision\Import\Actions\AbstractAction;
  * @link      https://github.com/techdivision/import-product-magic360
  * @link      http://www.techdivision.com
  */
-class Magic360ColumnsAction extends AbstractAction implements Magic360ColumnsActionInterface
+interface ProductMagic360ColumnsRepositoryInterface extends RepositoryInterface
 {
+
+    /**
+     * Load's the product media gallery value with the passed value/store/parent ID.
+     *
+     * @param integer $productId The value ID of the product media gallery value to load
+     *
+     * @return array The product media gallery value
+     */
+    public function findOneByProductId($productId);
 }
