@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TechDivision\Import\Product\Magic360\Actions\Magic360ColumnsAction
+ * TechDivision\Import\Product\Magic360\Actions\Magic360ColumnsActionInterface
  *
  * NOTICE OF LICENSE
  *
@@ -21,10 +21,10 @@
 
 namespace TechDivision\Import\Product\Magic360\Actions;
 
-use TechDivision\Import\Actions\AbstractAction;
+use TechDivision\Import\Actions\ActionInterface;
 
 /**
- * The columns action class.
+ * The interface for column action class implementations.
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @author    Bernhard Wick <b.wick@techdivision.com>
@@ -33,6 +33,6 @@ use TechDivision\Import\Actions\AbstractAction;
  * @link      https://github.com/techdivision/import-product-magic360
  * @link      http://www.techdivision.com
  */
-class Magic360ColumnsAction extends AbstractAction implements Magic360ColumnsActionInterface
+interface Magic360ColumnsActionInterface extends ActionInterface
 {
 }

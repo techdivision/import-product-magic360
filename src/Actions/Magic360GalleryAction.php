@@ -24,7 +24,7 @@ namespace TechDivision\Import\Product\Magic360\Actions;
 use TechDivision\Import\Actions\AbstractAction;
 
 /**
- * Gallery action class
+ * The gallery action class implementation.
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @author    Bernhard Wick <b.wick@techdivision.com>
@@ -33,6 +33,6 @@ use TechDivision\Import\Actions\AbstractAction;
  * @link      https://github.com/techdivision/import-product-magic360
  * @link      http://www.techdivision.com
  */
-class Magic360GalleryAction extends AbstractAction
+class Magic360GalleryAction extends AbstractAction implements Magic360GalleryActionInterface
 {
 }

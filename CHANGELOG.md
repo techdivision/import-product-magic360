@@ -1,3 +1,14 @@
+# Version 1.0.0-beta12
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Add missing interfaces for actions and repositories
+* Replace class type hints for ProductMagic360Processor with interfaces
+
 # Version 1.0.0-beta11
 
 ## Bugfixes
