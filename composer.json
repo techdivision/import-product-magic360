@@ -1,9 +1,9 @@
 {
     "name": "techdivision/import-product-magic360",
     "description": "M2IF library providing basic import functionality for the Magic ToolBox Magic 360 image gallery view",
-    "minimum-stability": "alpha",
     "license": "OSL-3.0",
     "require": {
+        "php": ">=5.6.0",
         "techdivision/import-product": "~1.0"
     },
     "require-dev": {
@@ -16,7 +16,7 @@
         "phpunit/phpunit": "4.4.*",
         "sebastian/phpcpd": "2.0.*",
         "squizlabs/php_codesniffer": "2.2.*",
-        "phpdocumentor/phpdocumentor": "2.8.*",
+        "phpdocumentor/phpdocumentor": "2.9.*",
         "consolidation/robo": "~1.0"
     },
     "authors": [
@@ -33,8 +33,8 @@
         "psr-4": {
             "TechDivision\\Import\\Product\\Magic360\\": [
                 "src/",
-                "tests/",
-                "symfony/"
+                "symfony/",
+                "tests/unit"
             ]
         }
     }
