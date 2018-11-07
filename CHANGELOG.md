@@ -1,3 +1,13 @@
+# Version 2.0.0
+
+## Bugfixes
+
+* None
+
+* Compatibility for Magento 2.2.x
+
+* None
+
 # Version 1.0.0
 
 ## Bugfixes
