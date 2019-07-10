@@ -1,12 +1,22 @@
+# Version 3.0.0
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Switch to new techdivision/import version 13.x
+
 # Version 2.0.0
 
 ## Bugfixes
 
 * None
 
-* Compatibility for Magento 2.2.x
+## Features
 
-* None
+* Compatibility for Magento 2.2.x
 
 # Version 1.0.0
 
