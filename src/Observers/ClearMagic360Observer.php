@@ -89,7 +89,6 @@ class ClearMagic360Observer extends AbstractProductImportObserver
             // FIRST delete the data related with the product with the passed SKU
             $this->deleteMagic360Gallery(array(ColumnKeys::PRODUCT_ID => $productId), SqlStatementKeys::DELETE_MAGIC360_GALLERY);
             $this->deleteMagic360Columns(array(ColumnKeys::PRODUCT_ID => $productId), SqlStatementKeys::DELETE_MAGIC360_COLUMNS);
-
         } catch (\Exception $e) {
             // query whether or not debug mode has been enabled
             if ($subject->isDebugMode()) {

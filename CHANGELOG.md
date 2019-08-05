@@ -1,3 +1,13 @@
+# Version 4.0.0
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Switch to new techdivision/import-product version 15.x
+
 # Version 3.0.0
 
 ## Bugfixes
@@ -6,7 +16,7 @@
 
 ## Features
 
-* Switch to new techdivision/import version 13.x
+* Switch to new techdivision/import-product version 13.x
 
 # Version 2.0.0
 
