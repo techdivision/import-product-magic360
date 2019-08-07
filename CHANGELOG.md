@@ -1,3 +1,13 @@
+# Version 6.0.0
+
+## Bugfixes
+
+* Remove unnecssary pre-load entity IDs functionality
+
+## Features
+
+* None
+
 # Version 5.0.0
 
 ## Bugfixes

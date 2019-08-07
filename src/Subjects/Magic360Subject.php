@@ -24,7 +24,6 @@ namespace TechDivision\Import\Product\Magic360\Subjects;
 use TechDivision\Import\Utils\RegistryKeys;
 use TechDivision\Import\Utils\FileUploadConfigurationKeys;
 use TechDivision\Import\Subjects\FileUploadTrait;
-use TechDivision\Import\Product\Utils\RegistryKeys as ProductRegistryKeys;
 use TechDivision\Import\Product\Subjects\AbstractProductSubject;
 
 /**
@@ -48,20 +47,6 @@ class Magic360Subject extends AbstractProductSubject
      * @var \TechDivision\Import\Subjects\FileUploadTrait
      */
     use FileUploadTrait;
-
-    /**
-     * The mapping for the SKUs to the created entity IDs.
-     *
-     * @var array $skuEntityIdMapping
-     */
-    protected $skuEntityIdMapping = array();
-
-    /**
-     * The entity IDs which were initially within the data storage, before other observers influenced them
-     *
-     * @var array $preloadEntityIds
-     */
-    protected $preloadEntityIds = array();
 
     /**
      * The name of the craeted image.
@@ -89,9 +74,8 @@ class Magic360Subject extends AbstractProductSubject
         // load the status of the actual import process
         $status = $registryProcessor->getAttribute($serial);
 
-        // load the attribute set we've prepared initially
+        // load the SKU => entity ID mapping
         $this->skuEntityIdMapping = $status[RegistryKeys::SKU_ENTITY_ID_MAPPING];
-        $this->preloadEntityIds = $status[ProductRegistryKeys::PRE_LOADED_ENTITY_IDS];
 
         // initialize the flag to decide copy images or not
         $this->setCopyImages($this->getConfiguration()->getParam(FileUploadConfigurationKeys::COPY_IMAGES));
@@ -113,46 +97,6 @@ class Magic360Subject extends AbstractProductSubject
                 )
             );
         }
-    }
-
-    /**
-     * Return the entity ID for the passed SKU.
-     *
-     * @param string $sku The SKU to return the entity ID for
-     *
-     * @return integer The mapped entity ID
-     * @throws \Exception Is thrown if the SKU is not mapped yet
-     */
-    public function mapSkuToEntityId($sku)
-    {
-
-        // query weather or not the SKU has been mapped
-        if (isset($this->skuEntityIdMapping[$sku])) {
-            return $this->skuEntityIdMapping[$sku];
-        }
-
-        // throw an exception if the SKU has not been mapped yet
-        throw new \Exception(sprintf('Found not mapped SKU %s', $sku));
-    }
-
-    /**
-     * Return the entity ID for the passed SKU based on the preload entity IDs.
-     *
-     * @param string $sku The SKU to return the entity ID for
-     *
-     * @return integer The mapped entity ID
-     * @throws \Exception Is thrown if the SKU is not mapped yet
-     */
-    public function mapSkuToPreloadEntityId($sku)
-    {
-
-        // query weather or not the SKU has been mapped
-        if (isset($this->preloadEntityIds[$sku])) {
-            return $this->preloadEntityIds[$sku];
-        }
-
-        // throw an exception if the SKU has not been mapped yet
-        throw new \Exception(sprintf('Found not mapped SKU %s within preload entities', $sku));
     }
 
     /**

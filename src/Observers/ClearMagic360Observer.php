@@ -84,7 +84,7 @@ class ClearMagic360Observer extends AbstractProductImportObserver
 
         try {
             // get the mapping to product ID based on the preload entity IDs
-            $productId = $subject->mapSkuToPreloadEntityId($sku);
+            $productId = $subject->mapSkuToEntityId($sku);
 
             // FIRST delete the data related with the product with the passed SKU
             $this->deleteMagic360Gallery(array(ColumnKeys::PRODUCT_ID => $productId), SqlStatementKeys::DELETE_MAGIC360_GALLERY);
@@ -100,6 +100,19 @@ class ClearMagic360Observer extends AbstractProductImportObserver
     }
 
     /**
+     * Return the entity ID for the passed SKU.
+     *
+     * @param string $sku The SKU to return the entity ID for
+     *
+     * @return integer The mapped entity ID
+     * @throws \Exception Is thrown if the SKU is not mapped yet
+     */
+    protected function mapSkuToEntityId($sku)
+    {
+        return $this->getSubject()->mapSkuToEntityId($sku);
+    }
+
+    /**
      * Deletes the gallery entity with the passed attributes.
      *
      * @param array       $row  The attributes of the entity to delete
@@ -107,7 +120,7 @@ class ClearMagic360Observer extends AbstractProductImportObserver
      *
      * @return void
      */
-    public function deleteMagic360Gallery($row, $name = null)
+    protected function deleteMagic360Gallery($row, $name = null)
     {
         $this->getProductMagic360Processor()->deleteMagic360Gallery($row, $name);
     }
@@ -120,7 +133,7 @@ class ClearMagic360Observer extends AbstractProductImportObserver
      *
      * @return void
      */
-    public function deleteMagic360Columns($row, $name = null)
+    protected function deleteMagic360Columns($row, $name = null)
     {
         $this->getProductMagic360Processor()->deleteMagic360Columns($row, $name);
     }
