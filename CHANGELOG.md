@@ -1,3 +1,13 @@
+# Version 7.0.0
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Switch to latest techdivision/import-product 17.* version as dependency
+
 # Version 6.0.0
 
 ## Bugfixes
