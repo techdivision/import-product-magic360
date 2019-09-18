@@ -1,3 +1,14 @@
+# Version 9.0.0
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Add techdivision/import-cli-simple#216
+* Switch to latest techdivision/import-product 19.* version as dependency
+
 # Version 8.0.0
 
 ## Bugfixes

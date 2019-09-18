@@ -86,14 +86,17 @@ class SqlStatementRepository extends AbstractSqlStatementRepository
     );
 
     /**
-     * Initialize the the SQL statements.
+     * Initializes the SQL statement repository with the primary key and table prefix utility.
+     *
+     * @param \IteratorAggregate<\TechDivision\Import\Utils\SqlCompilerInterface> $compilers The array with the compiler instances
      */
-    public function __construct()
+    public function __construct(\IteratorAggregate $compilers)
     {
 
-        // merge the class statements
-        foreach ($this->statements as $key => $statement) {
-            $this->preparedStatements[$key] = $statement;
-        }
+        // pass primary key + table prefix utility to parent instance
+        parent::__construct($compilers);
+
+        // compile the SQL statements
+        $this->compile($this->statements);
     }
 }

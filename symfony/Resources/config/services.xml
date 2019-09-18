@@ -5,7 +5,9 @@
 
     <services>
 
-        <service id="import_product_magic360.repository.sql.statement" class="TechDivision\Import\Product\Magic360\Repositories\SqlStatementRepository"/>
+        <service id="import_product_magic360.repository.sql.statement" class="TechDivision\Import\Product\Magic360\Repositories\SqlStatementRepository">
+            <argument type="tagged" tag="import.util.sql.compilers"/>
+        </service>
 
         <service id="import_product_magic360.repository.product.magic360.columns" class="TechDivision\Import\Product\Magic360\Repositories\ProductMagic360ColumnsRepository">
             <argument type="service" id="connection"/>
