@@ -3,6 +3,15 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <!--
+     | The DI configuration for the params.
+     |-->
+    <parameters>
+        <parameter key="import_product_magic360.param.sku.column.name" type="constant">
+            TechDivision\Import\Product\Utils\ColumnKeys::SKU
+        </parameter>
+    </parameters>
+
     <services>
 
         <service id="import_product_magic360.repository.sql.statement" class="TechDivision\Import\Product\Magic360\Repositories\SqlStatementRepository">
@@ -85,6 +94,60 @@
             <argument type="service" id="import.generator.core.config.data.uid"/>
             <argument type="service" id="loggers"/>
             <argument type="service" id="import.events.emitter"/>
+        </service>
+
+        <!--
+         | The DI configuration for the observer that loads the mapping for the row/entity ID which is necessary for the Magic360 delta import.
+         |-->
+        <service id="import_product_magic360.observer.sku.entity.id.mapping"
+                 class="TechDivision\Import\Product\Observers\GenericSkuEntityIdMappingObserver">
+            <argument type="service" id="import_product.processor.product.bunch"/>
+            <argument type="string">%import_product_magic360.param.sku.column.name%</argument>
+        </service>
+
+        <!--
+         | The DI configuration for the composite observers of the Magic360 delete operation.
+         |-->
+        <service id="import_product_magic360.observer.composite.delete" class="TechDivision\Import\Observers\GenericCompositeObserver">
+            <call method="addObserver">
+                <argument id="import_product_magic360.observer.sku.entity.id.mapping" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_product_magic360.observer.clear.magic360" type="service"/>
+            </call>
+        </service>
+
+        <!--
+         | The DI configuration for the composite observers of the Magic360 add-update operation.
+         |-->
+        <service id="import_product_magic360.observer.composite.add_update" class="TechDivision\Import\Observers\GenericCompositeObserver">
+            <call method="addObserver">
+                <argument id="import_product_magic360.observer.file.upload" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_product_magic360.observer.magic360.gallery.update" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_product_magic360.observer.magic360.columns.update" type="service"/>
+            </call>
+        </service>
+
+        <!--
+         | The DI configuration for the composite observers of the Magic360 replace operation.
+         |-->
+        <service id="import_product_magic360.observer.composite.replace" class="TechDivision\Import\Observers\GenericCompositeObserver">
+            <call method="addObserver">
+                <argument id="import_product_magic360.observer.clear.magic360" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_product_magic360.observer.file.upload" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_product_magic360.observer.magic360.gallery" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_product_magic360.observer.magic360.columns" type="service"/>
+            </call>
         </service>
 
     </services>

@@ -21,53 +21,46 @@ file
 {
   "magento-edition": "CE",
   "magento-version": "2.1.2",
-  "operation-name" : "replace",
-  "installation-dir" : "/var/www/magento",
-  "utility-class-name" : "TechDivision\\Import\\Utils\\SqlStatements",
+  "operation-name" : "add-update",
   "database": { ... },
   "operations" : [
+    {
+      "name" : "delete",
+      "subjects": [
+        { ... },
+        {
+          "id": "import_product_magic360.subject.magic360",
+          "file-resolver": {
+            "prefix": "magic360"
+          },
+          "observers": [
+            {
+              "import": [
+                "import_product_magic360.observer.composite.delete"
+              ]
+            }
+          ]
+        }
+      ]
+    },
     {
       "name" : "replace",
       "subjects": [
         { ... },
         {
-          "class-name": "TechDivision\\Import\\Product\\Subjects\\BunchSubject",
-          ...,
-          "observers": [
-            {
-              "import": [
-                ...,
-                "TechDivision\\Import\\Product\\Magic360\\Observers\\ProductMagic360Observer"
-              ]
-            },
-            {
-              "post-import": [ ... ]
-            }
-          ]
-        },
-        { ... },
-        {
-          "class-name": "TechDivision\\Import\\Product\\Magic360\\Subjects\\Magic360Subject",
-          "processor-factory" : "TechDivision\\Import\\Product\\Magic360\\Services\\ProductMagic360ProcessorFactory",
-          "utility-class-name" : "TechDivision\\Import\\Product\\Magic360\\Utils\\SqlStatements",
-          "prefix": "magic360",
+          "id": "import_product_magic360.subject.magic360",
+          "file-resolver": {
+            "prefix": "magic360"
+          },
           "params" : [
             {
-              "copy-images" : false,
-              "root-directory" : "/",
-              "media-directory" : "/opt/appserver/webapps/magento2_ce212/pub/media/catalog/product",
-              "images-file-directory" : "projects/sample-data/magento2-sample-data/pub/media/catalog/product"
+              "copy-images" : false
             }
           ],
           "observers": [
             {
-              "pre-import" : [
-                "TechDivision\\Import\\Product\\Magic360\\Observers\\ClearMagic360Observer",
-                "TechDivision\\Import\\Product\\Media\\Observers\\FileUploadObserver"
-              ],
               "import": [
-                "TechDivision\\Import\\Product\\Magic360\\Observers\\Magic360GalleryObserver",
-                "TechDivision\\Import\\Product\\Magic360\\Observers\\Magic360ColumnsObserver"
+                "import_product_magic360.observer.composite.replace"
               ]
             }
           ]
@@ -79,43 +72,19 @@ file
       "subjects": [
         { ... },
         {
-          "class-name": "TechDivision\\Import\\Product\\Subjects\\BunchSubject",
-          ...,
-          "observers": [
-            {
-              "import": [
-                ...,
-                "TechDivision\\Import\\Product\\Magic360\\Observers\\ProductMagic360Observer"
-              ]
-            },
-            {
-              "post-import": [ ... ]
-            }
-          ]
-        },
-        { ... },
-        {
-          "class-name": "TechDivision\\Import\\Product\\Magic360\\Subjects\\Magic360Subject",
-          "processor-factory" : "TechDivision\\Import\\Product\\Magic360\\Services\\ProductMagic360ProcessorFactory",
-          "utility-class-name" : "TechDivision\\Import\\Product\\Magic360\\Utils\\SqlStatements",
-          "prefix": "magic360",
+          "id": "import_product_magic360.subject.magic360",
+          "file-resolver": {
+            "prefix": "magic360"
+          },
           "params" : [
             {
-              "copy-images" : false,
-              "root-directory" : "/",
-              "media-directory" : "/opt/appserver/webapps/magento2_ce212/pub/media/catalog/product",
-              "images-file-directory" : "projects/sample-data/magento2-sample-data/pub/media/catalog/product"
+              "copy-images" : false
             }
           ],
           "observers": [
             {
-              "pre-import" : [
-                "TechDivision\\Import\\Product\\Magic360\\Observers\\ClearMagic360Observer",
-                "TechDivision\\Import\\Product\\Media\\Observers\\FileUploadObserver"
-              ],
               "import": [
-                "TechDivision\\Import\\Product\\Magic360\\Observers\\Magic360GalleryUpateObserver",
-                "TechDivision\\Import\\Product\\Magic360\\Observers\\Magic360ColumnsUpdateObserver"
+                "import_product_magic360.observer.composite.add_update"
               ]
             }
           ]
