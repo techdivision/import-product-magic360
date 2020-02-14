@@ -13,61 +13,46 @@ This module provides the functionality to import the images for the almost famou
 
 ## Configuration
 
-In case that the [M2IF - Simple Console Tool](https://github.com/techdivision/import-cli-simple) 
-is used, the functionality can be enabled merging the following snippet to the used configuration 
-file
+In case that the [M2IF - Simple Console Tool](https://github.com/techdivision/import-cli-simple) < 3.8
+is used, the functionality for the add-update and replace operations can be enabled merging the following 
+snippet to the used configuration file
 
 ```json
 {
   "magento-edition": "CE",
   "magento-version": "2.1.2",
-  "operation-name" : "replace",
-  "installation-dir" : "/var/www/magento",
-  "utility-class-name" : "TechDivision\\Import\\Utils\\SqlStatements",
+  "operation-name" : "add-update",
   "database": { ... },
+  "extension-libraries": [
+    "techdivision/import-product-magic360"
+  ],
+  "additional-vendor-dirs": [
+    {
+      "vendor-dir": "app/code",
+      "libraries": [
+        "MyProject/Import"
+      ]
+    }
+  ],
   "operations" : [
     {
       "name" : "replace",
       "subjects": [
         { ... },
         {
-          "class-name": "TechDivision\\Import\\Product\\Subjects\\BunchSubject",
-          ...,
-          "observers": [
-            {
-              "import": [
-                ...,
-                "TechDivision\\Import\\Product\\Magic360\\Observers\\ProductMagic360Observer"
-              ]
-            },
-            {
-              "post-import": [ ... ]
-            }
-          ]
-        },
-        { ... },
-        {
-          "class-name": "TechDivision\\Import\\Product\\Magic360\\Subjects\\Magic360Subject",
-          "processor-factory" : "TechDivision\\Import\\Product\\Magic360\\Services\\ProductMagic360ProcessorFactory",
-          "utility-class-name" : "TechDivision\\Import\\Product\\Magic360\\Utils\\SqlStatements",
-          "prefix": "magic360",
+          "id": "import_product_magic360.subject.magic360",
+          "file-resolver": {
+            "prefix": "magic360"
+          },
           "params" : [
             {
-              "copy-images" : false,
-              "root-directory" : "/",
-              "media-directory" : "/opt/appserver/webapps/magento2_ce212/pub/media/catalog/product",
-              "images-file-directory" : "projects/sample-data/magento2-sample-data/pub/media/catalog/product"
+              "copy-images" : false
             }
           ],
           "observers": [
             {
-              "pre-import" : [
-                "TechDivision\\Import\\Product\\Magic360\\Observers\\ClearMagic360Observer",
-                "TechDivision\\Import\\Product\\Media\\Observers\\FileUploadObserver"
-              ],
               "import": [
-                "TechDivision\\Import\\Product\\Magic360\\Observers\\Magic360GalleryObserver",
-                "TechDivision\\Import\\Product\\Magic360\\Observers\\Magic360ColumnsObserver"
+                "import_product_magic360.observer.composite.replace"
               ]
             }
           ]
@@ -79,43 +64,19 @@ file
       "subjects": [
         { ... },
         {
-          "class-name": "TechDivision\\Import\\Product\\Subjects\\BunchSubject",
-          ...,
-          "observers": [
-            {
-              "import": [
-                ...,
-                "TechDivision\\Import\\Product\\Magic360\\Observers\\ProductMagic360Observer"
-              ]
-            },
-            {
-              "post-import": [ ... ]
-            }
-          ]
-        },
-        { ... },
-        {
-          "class-name": "TechDivision\\Import\\Product\\Magic360\\Subjects\\Magic360Subject",
-          "processor-factory" : "TechDivision\\Import\\Product\\Magic360\\Services\\ProductMagic360ProcessorFactory",
-          "utility-class-name" : "TechDivision\\Import\\Product\\Magic360\\Utils\\SqlStatements",
-          "prefix": "magic360",
+          "id": "import_product_magic360.subject.magic360",
+          "file-resolver": {
+            "prefix": "magic360"
+          },
           "params" : [
             {
-              "copy-images" : false,
-              "root-directory" : "/",
-              "media-directory" : "/opt/appserver/webapps/magento2_ce212/pub/media/catalog/product",
-              "images-file-directory" : "projects/sample-data/magento2-sample-data/pub/media/catalog/product"
+              "copy-images" : false
             }
           ],
           "observers": [
             {
-              "pre-import" : [
-                "TechDivision\\Import\\Product\\Magic360\\Observers\\ClearMagic360Observer",
-                "TechDivision\\Import\\Product\\Media\\Observers\\FileUploadObserver"
-              ],
               "import": [
-                "TechDivision\\Import\\Product\\Magic360\\Observers\\Magic360GalleryUpateObserver",
-                "TechDivision\\Import\\Product\\Magic360\\Observers\\Magic360ColumnsUpdateObserver"
+                "import_product_magic360.observer.composite.add_update"
               ]
             }
           ]
@@ -124,6 +85,40 @@ file
     }
   ]
 }
+```
+
+For the `delete` operation, it is necessary to override the Symfony DI configuration for the apropriate composite
+observer. For example if you're using Magento CE, add a `MyProject/import/symfony/Resources/config/services.xml' 
+with the following content, to override the default `import_product.observer.composite.base.delete` composite observer
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <!--
+         | The DI configuration for the composite observers of the delete operation.
+         |-->
+        <service id="import_product.observer.composite.base.delete" class="TechDivision\Import\Observers\GenericCompositeObserver">
+            <call method="addObserver">
+                <argument id="import_product_magic360.observer.sku.entity.id.mapping" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_product_msi.observer.product.source.item.default" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_product_url_rewrite.observer.clear.url.rewrite" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_product_magic360.observer.clear.magic360" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_product.observer.clear.product" type="service"/>
+            </call>
+        </service>
+    </services>
+</container>
 ```
 
 # Missing Index

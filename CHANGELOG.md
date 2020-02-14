@@ -1,3 +1,14 @@
+# Version 8.0.1
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Update README.md and DI configuration'
+* Remove slashes from value of `images_360` column to avoid invalid image paths
+
 # Version 8.0.0
 
 ## Bugfixes

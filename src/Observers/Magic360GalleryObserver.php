@@ -84,7 +84,7 @@ class Magic360GalleryObserver extends AbstractProductImportObserver
 
         // initialize the directories with the images to import
         $mediaDir = $this->getSubject()->getMediaDir();
-        $images360Path = DIRECTORY_SEPARATOR . ltrim($this->getValue(ColumnKeys::IMAGES_PATH), DIRECTORY_SEPARATOR);
+        $images360Path = DIRECTORY_SEPARATOR . trim($this->getValue(ColumnKeys::IMAGES_PATH), DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
 
         // log a message with the folder name containing the images
         $this->getSubject()->getSystemLogger()->debug(sprintf('Now try to load 360° images from directory %s%s', $mediaDir, $images360Path));
