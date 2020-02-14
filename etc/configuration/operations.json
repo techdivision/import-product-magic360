@@ -1,0 +1,62 @@
+{
+  "operations": {
+    "general": {
+      "catalog_product": {
+        "replace.magic360": {
+          "plugins": {
+            "subject": {
+              "id": "import.plugin.subject",
+              "subjects": [
+                {
+                  "id": "import_product_magic360.subject.magic360",
+                  "file-resolver": {
+                    "prefix": "magic360"
+                  },
+                  "params" : [
+                    {
+                      "copy-images" : false
+                    }
+                  ],
+                  "observers": [
+                    {
+                      "import": [
+                        "import_product_magic360.observer.composite.replace"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "add-update.magic360": {
+          "plugins": {
+            "subjects": {
+              "id": "import.plugin.subject",
+              "subjects": [
+                {
+                  "id": "import_product_magic360.subject.magic360",
+                  "file-resolver": {
+                    "prefix": "magic360"
+                  },
+                  "params" : [
+                    {
+                      "copy-images" : false
+                    }
+                  ],
+                  "observers": [
+                    {
+                      "import": [
+                        "import_product_magic360.observer.composite.add_update"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

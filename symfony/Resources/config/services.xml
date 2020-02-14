@@ -106,21 +106,12 @@
         </service>
 
         <!--
-         | The DI configuration for the composite observers of the Magic360 delete operation.
-         |-->
-        <service id="import_product_magic360.observer.composite.delete" class="TechDivision\Import\Observers\GenericCompositeObserver">
-            <call method="addObserver">
-                <argument id="import_product_magic360.observer.sku.entity.id.mapping" type="service"/>
-            </call>
-            <call method="addObserver">
-                <argument id="import_product_magic360.observer.clear.magic360" type="service"/>
-            </call>
-        </service>
-
-        <!--
          | The DI configuration for the composite observers of the Magic360 add-update operation.
          |-->
         <service id="import_product_magic360.observer.composite.add_update" class="TechDivision\Import\Observers\GenericCompositeObserver">
+            <call method="addObserver">
+                <argument id="import_product_magic360.observer.sku.entity.id.mapping" type="service"/>
+            </call>
             <call method="addObserver">
                 <argument id="import_product_magic360.observer.file.upload" type="service"/>
             </call>
@@ -136,6 +127,9 @@
          | The DI configuration for the composite observers of the Magic360 replace operation.
          |-->
         <service id="import_product_magic360.observer.composite.replace" class="TechDivision\Import\Observers\GenericCompositeObserver">
+            <call method="addObserver">
+                <argument id="import_product_magic360.observer.sku.entity.id.mapping" type="service"/>
+            </call>
             <call method="addObserver">
                 <argument id="import_product_magic360.observer.clear.magic360" type="service"/>
             </call>

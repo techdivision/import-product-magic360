@@ -1,3 +1,15 @@
+# Version 9.0.1
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Merge with latest changes from 8.x branch
+* Update README.md and DI configuration'
+* Remove slashes from value of `images_360` column to avoid invalid image paths
+
 # Version 9.0.0
 
 ## Bugfixes
@@ -8,6 +20,17 @@
 
 * Add techdivision/import-cli-simple#216
 * Switch to latest techdivision/import-product 19.* version as dependency
+
+# Version 8.0.1
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Update README.md and DI configuration'
+* Remove slashes from value of `images_360` column to avoid invalid image paths
 
 # Version 8.0.0
 
