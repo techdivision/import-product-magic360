@@ -1,3 +1,13 @@
+# Version 9.0.2
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Extract dev autoloading
+
 # Version 9.0.1
 
 ## Bugfixes
