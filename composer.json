@@ -1,10 +1,10 @@
 {
     "name": "techdivision/import-product-magic360",
-    "description": "M2IF library providing basic import functionality for the Magic ToolBox Magic 360 image gallery view",
+    "description": "Pacemaker library providing basic import functionality for the Magic ToolBox Magic 360 image gallery view",
     "license": "OSL-3.0",
     "require": {
         "php": ">=7.1.0",
-        "techdivision/import-product": "19.*"
+        "techdivision/import-product": "20.*"
     },
     "require-dev": {
         "doctrine/dbal": "2.5.*",

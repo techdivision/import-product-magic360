@@ -52,7 +52,7 @@ class RoboFile extends \Robo\Tasks
     /**
      * Runs the composer install command.
      *
-     * @return void
+     * @return \Robo\Result The result
      */
     public function composerInstall()
     {
@@ -66,7 +66,7 @@ class RoboFile extends \Robo\Tasks
     /**
      * Runs the composer update command.
      *
-     * @return void
+     * @return \Robo\Result The result
      */
     public function composerUpdate()
     {
@@ -80,7 +80,7 @@ class RoboFile extends \Robo\Tasks
     /**
      * Clean up the environment for a new build.
      *
-     * @return void
+     * @return \Robo\Result The result
      */
     public function clean()
     {
@@ -90,7 +90,7 @@ class RoboFile extends \Robo\Tasks
     /**
      * Prepare's the environment for a new build.
      *
-     * @return void
+     * @return \Robo\Result The result
      */
     public function prepare()
     {
@@ -104,7 +104,7 @@ class RoboFile extends \Robo\Tasks
     /**
      * Runs the PHPMD.
      *
-     * @return void
+     * @return \Robo\Result The result
      */
     public function runMd()
     {
@@ -123,7 +123,7 @@ class RoboFile extends \Robo\Tasks
     /**
      * Runs the PHPCPD.
      *
-     * @return void
+     * @return \Robo\Result The result
      */
     public function runCpd()
     {
@@ -142,7 +142,7 @@ class RoboFile extends \Robo\Tasks
     /**
      * Runs the PHPCodeSniffer.
      *
-     * @return void
+     * @return \Robo\Result The result
      */
     public function runCs()
     {
@@ -161,7 +161,7 @@ class RoboFile extends \Robo\Tasks
     /**
      * Runs the PHPUnit tests.
      *
-     * @return void
+     * @return \Robo\Result The result
      */
     public function runTests()
     {
@@ -179,6 +179,11 @@ class RoboFile extends \Robo\Tasks
      */
     public function build()
     {
+
+        // stop the build on first failure of a task
+        $this->stopOnFail(true);
+
+        // process the build
         $this->clean();
         $this->prepare();
         $this->runCs();
