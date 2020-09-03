@@ -1,3 +1,13 @@
+# Version 8.0.3
+
+## Bugfixes
+
+* Fixed export functionality for media gallery
+
+## Features
+
+* None
+
 # Version 8.0.2
 
 ## Bugfixes
