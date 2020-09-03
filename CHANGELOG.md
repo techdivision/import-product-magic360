@@ -1,3 +1,13 @@
+# Version 8.0.2
+
+## Bugfixes
+
+* Fixed issue that interprets every value as the boolean TRUE
+
+## Features
+
+* None
+
 # Version 8.0.1
 
 ## Bugfixes

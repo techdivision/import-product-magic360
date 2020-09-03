@@ -45,14 +45,34 @@ class ProductMagic360Observer extends AbstractProductImportObserver
     const ARTEFACT_TYPE = 'magic360';
 
     /**
+     * Array with the string => boolean mapping.
+     *
+     * @var array
+     */
+    private $booleanValues = array(
+        'true'  => 1,
+        'yes'   => 1,
+        '1'     => 1,
+        'false' => 0,
+        'no'    => 0,
+        '0'     => 0
+    );
+
+    /**
      * Process the observer's business logic.
      *
      * @return array The processed row
      */
     protected function process()
     {
+
+        // initialize the callback to map the boolean value from the is_360 column
+        $callback = function ($value) {
+            return isset($this->booleanValues[$value]) ? $this->booleanValues[$value] : false;
+        };
+
         // we will only look for the image path if the row is flagged as having 360 images
-        if ($this->hasValue(ColumnKeys::IS_360)) {
+        if ($this->getValue(ColumnKeys::IS_360, false, $callback)) {
             $this->addArtefacts(
                 array(
                     array(
