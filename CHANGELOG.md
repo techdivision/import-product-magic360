@@ -1,3 +1,13 @@
+# Version 14.0.2
+
+## Bugfixes
+
+* Fixed export functionality for media gallery
+
+## Features
+
+* None
+
 # Version 14.0.1
 
 ## Bugfixes

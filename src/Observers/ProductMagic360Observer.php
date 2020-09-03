@@ -50,12 +50,12 @@ class ProductMagic360Observer extends AbstractProductImportObserver
      * @var array
      */
     private $booleanValues = array(
-        'true'  => 1,
-        'yes'   => 1,
-        '1'     => 1,
-        'false' => 0,
-        'no'    => 0,
-        '0'     => 0
+        'true'  => true,
+        'yes'   => true,
+        '1'     => true,
+        'false' => false,
+        'no'    => false,
+        '0'     => false
     );
 
     /**
@@ -68,7 +68,7 @@ class ProductMagic360Observer extends AbstractProductImportObserver
 
         // initialize the callback to map the boolean value from the is_360 column
         $callback = function ($value) {
-            return isset($this->booleanValues[$value]) ? $this->booleanValues[$value] : false;
+            return array_key_exists($key = strtolower($value), $this->booleanValues) ? $this->booleanValues[$key] : false;
         };
 
         // we will only look for the image path if the row is flagged as having 360 images
