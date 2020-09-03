@@ -1,3 +1,13 @@
+# Version 14.0.1
+
+## Bugfixes
+
+* Fixed issue that interprets every value as the boolean TRUE
+
+## Features
+
+* None
+
 # Version 14.0.0
 
 ## Bugfixes
