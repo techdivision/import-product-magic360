@@ -1,10 +1,12 @@
-# M2IF - Product Magic360 Image Import
+# Pacemaker - Product Magic360 Image Import
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/techdivision/import-product-magic360.svg?style=flat-square)](https://packagist.org/packages/techdivision/import-product-magic360) 
  [![Total Downloads](https://img.shields.io/packagist/dt/techdivision/import-product-magic360.svg?style=flat-square)](https://packagist.org/packages/techdivision/import-product-magic360)
  [![License](https://img.shields.io/packagist/l/techdivision/import-product-magic360.svg?style=flat-square)](https://packagist.org/packages/techdivision/import-product-magic360)
  [![Build Status](https://img.shields.io/travis/techdivision/import-product-magic360/master.svg?style=flat-square)](http://travis-ci.org/techdivision/import-product-magic360)
  [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/techdivision/import-product-magic360/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/techdivision/import-product-magic360/?branch=master) [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/techdivision/import-product-magic360/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/techdivision/import-product-magic360/?branch=master)
+
+Please visit the Pacemaker [website](https://pacemaker.techdivision.com) or our [documentation](https://docs.met.tdintern.de/pacemaker/1.3/) for additional information
 
 ## Introduction
 
@@ -13,7 +15,7 @@ This module provides the functionality to import the images for the almost famou
 
 ## Configuration
 
-In case that the [M2IF - Simple Console Tool](https://github.com/techdivision/import-cli-simple) >= 3.8
+In case that the [Pacemaker - Simple Console Tool](https://github.com/techdivision/import-cli-simple) >= 3.8
 is used, the functionality for the add-update and replace operations can be enabled add the following
 snippets to your `<magento-install-dir>/app/etc/configuration` directory.
 
