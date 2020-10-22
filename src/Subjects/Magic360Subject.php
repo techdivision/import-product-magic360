@@ -25,6 +25,7 @@ use TechDivision\Import\Utils\RegistryKeys;
 use TechDivision\Import\Utils\FileUploadConfigurationKeys;
 use TechDivision\Import\Subjects\FileUploadTrait;
 use TechDivision\Import\Product\Subjects\AbstractProductSubject;
+use TechDivision\Import\Utils\ConfigurationKeys;
 
 /**
  * The main Magic360 subject
@@ -82,20 +83,20 @@ class Magic360Subject extends AbstractProductSubject
 
         // initialize media directory => can be absolute or relative
         if ($this->getConfiguration()->hasParam(FileUploadConfigurationKeys::MEDIA_DIRECTORY)) {
-            $this->setMediaDir(
-                $this->resolvePath(
-                    $this->getConfiguration()->getParam(FileUploadConfigurationKeys::MEDIA_DIRECTORY)
-                )
-            );
+            try {
+                $this->setMediaDir($this->resolvePath($this->getConfiguration()->getParam(FileUploadConfigurationKeys::MEDIA_DIRECTORY)));
+            } catch (\InvalidArgumentException $iae) {
+                $this->getSystemLogger()->debug($iae->getMessage());
+            }
         }
 
         // initialize images directory => can be absolute or relative
         if ($this->getConfiguration()->hasParam(FileUploadConfigurationKeys::IMAGES_FILE_DIRECTORY)) {
-            $this->setImagesFileDir(
-                $this->resolvePath(
-                    $this->getConfiguration()->getParam(FileUploadConfigurationKeys::IMAGES_FILE_DIRECTORY)
-                )
-            );
+            try {
+                $this->setImagesFileDir($this->resolvePath($this->getConfiguration()->getParam(FileUploadConfigurationKeys::IMAGES_FILE_DIRECTORY)));
+            } catch (\InvalidArgumentException $iae) {
+                $this->getSystemLogger()->debug($iae->getMessage());
+            }
         }
     }
 

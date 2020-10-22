@@ -13,7 +13,9 @@
                     "prefix": "magic360"
                   },
                   "params" : {
-                    "copy-images" : false
+                    "copy-images" : false,
+                    "media-directory" : "pub/media/magic360",
+                    "images-file-directory" : "var/importexport/media/catalog/product"
                   },
                   "observers": [
                     {
@@ -38,7 +40,9 @@
                     "prefix": "magic360"
                   },
                   "params" : {
-                      "copy-images" : false
+                    "copy-images" : false,
+                    "media-directory" : "pub/media/magic360",
+                    "images-file-directory" : "var/importexport/media/catalog/product"
                   },
                   "observers": [
                     {
