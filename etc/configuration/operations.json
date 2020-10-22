@@ -12,11 +12,9 @@
                   "file-resolver": {
                     "prefix": "magic360"
                   },
-                  "params" : [
-                    {
-                      "copy-images" : false
-                    }
-                  ],
+                  "params" : {
+                    "copy-images" : false
+                  },
                   "observers": [
                     {
                       "import": [
@@ -39,11 +37,9 @@
                   "file-resolver": {
                     "prefix": "magic360"
                   },
-                  "params" : [
-                    {
+                  "params" : {
                       "copy-images" : false
-                    }
-                  ],
+                  },
                   "observers": [
                     {
                       "import": [
