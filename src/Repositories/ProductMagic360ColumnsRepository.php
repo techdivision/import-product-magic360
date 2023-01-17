@@ -21,7 +21,7 @@
 
 namespace TechDivision\Import\Product\Magic360\Repositories;
 
-use TechDivision\Import\Repositories\AbstractRepository;
+use TechDivision\Import\Dbal\Collection\Repositories\AbstractRepository;
 use TechDivision\Import\Product\Magic360\Utils\ParamNames;
 use TechDivision\Import\Product\Magic360\Utils\SqlStatementKeys;
 

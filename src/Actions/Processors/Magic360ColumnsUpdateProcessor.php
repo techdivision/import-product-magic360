@@ -23,7 +23,7 @@ namespace TechDivision\Import\Product\Magic360\Actions\Processors;
 
 use TechDivision\Import\Product\Magic360\Utils\MemberNames;
 use TechDivision\Import\Product\Magic360\Utils\SqlStatementKeys;
-use TechDivision\Import\Actions\Processors\AbstractCreateProcessor;
+use TechDivision\Import\Dbal\Collection\Actions\Processors\AbstractBaseProcessor;
 
 /**
  * The magic360 columns update processor implementation.
@@ -35,14 +35,14 @@ use TechDivision\Import\Actions\Processors\AbstractCreateProcessor;
  * @link      https://github.com/techdivision/import-product-magic360
  * @link      http://www.techdivision.com
  */
-class Magic360ColumnsUpdateProcessor extends AbstractCreateProcessor
+class Magic360ColumnsUpdateProcessor extends AbstractBaseProcessor
 {
 
     /**
      * Returns the array with the SQL statements that has to be prepared.
      *
      * @return array The SQL statements to be prepared
-     * @see \TechDivision\Import\Actions\Processors\AbstractBaseProcessor::getStatements()
+     * @see AbstractBaseProcessor::getStatements()
      */
     protected function getStatements()
     {

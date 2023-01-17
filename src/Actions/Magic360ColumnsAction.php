@@ -21,7 +21,7 @@
 
 namespace TechDivision\Import\Product\Magic360\Actions;
 
-use TechDivision\Import\Actions\AbstractAction;
+use TechDivision\Import\Dbal\Collection\Actions\AbstractAction;
 
 /**
  * The columns action class.
