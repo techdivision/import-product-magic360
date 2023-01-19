@@ -22,7 +22,7 @@
 namespace TechDivision\Import\Product\Magic360\Repositories;
 
 use TechDivision\Import\Product\Magic360\Utils\SqlStatementKeys;
-use TechDivision\Import\Repositories\AbstractSqlStatementRepository;
+use TechDivision\Import\Dbal\Collection\Repositories\AbstractSqlStatementRepository;
 
 /**
  * Repository class with the SQL statements to use.

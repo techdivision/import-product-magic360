@@ -21,7 +21,7 @@
 
 namespace TechDivision\Import\Product\Magic360\Actions;
 
-use TechDivision\Import\Actions\ActionInterface;
+use TechDivision\Import\Dbal\Actions\ActionInterface;
 
 /**
  * The interface for column action class implementations.

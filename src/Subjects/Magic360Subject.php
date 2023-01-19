@@ -25,7 +25,6 @@ use TechDivision\Import\Utils\RegistryKeys;
 use TechDivision\Import\Utils\FileUploadConfigurationKeys;
 use TechDivision\Import\Subjects\FileUploadTrait;
 use TechDivision\Import\Product\Subjects\AbstractProductSubject;
-use TechDivision\Import\Utils\ConfigurationKeys;
 
 /**
  * The main Magic360 subject

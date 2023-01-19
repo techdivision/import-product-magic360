@@ -21,7 +21,7 @@
 
 namespace TechDivision\Import\Product\Magic360\Services;
 
-use TechDivision\Import\Connection\ConnectionInterface;
+use TechDivision\Import\Dbal\Connection\ConnectionInterface;
 use TechDivision\Import\Product\Magic360\Actions\Magic360GalleryActionInterface;
 use TechDivision\Import\Product\Magic360\Actions\Magic360ColumnsActionInterface;
 use TechDivision\Import\Product\Magic360\Repositories\ProductMagic360GalleryRepositoryInterface;
@@ -43,7 +43,7 @@ class ProductMagic360Processor implements ProductMagic360ProcessorInterface
     /**
      * A PDO connection initialized with the values from the Doctrine EntityManager.
      *
-     * @var \TechDivision\Import\Connection\ConnectionInterface
+     * @var \TechDivision\Import\Dbal\Connection\ConnectionInterface
      */
     protected $connection;
 
