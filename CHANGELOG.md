@@ -1,4 +1,13 @@
-# Version 15.0.0
+# Version 16.0.0
+
+## Bugfixes
+
+* Update module dependencies
+* Fix usages in processors, actions and repositories on migrated modules
+
+## Features
+
+* none
 
 ## Bugfixes
 
